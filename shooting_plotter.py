@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 from collections import defaultdict
 from itertools import cycle
 
-shooting_data = "analysis/output_shooting.txt"
-eigenperturbation_data = "analysis/output_eigenperturbation.txt"
+shooting_data = "output-files/output_shooting.txt"
+eigenperturbation_data = "output-files/output_eigenperturbation.txt"
 
 
 
@@ -93,7 +93,7 @@ def generate_output (file_name):
     for key, rows in groups.items():
 
         rows = np.array(rows)
-        x = rows[:, -2]  
+        x = rows[:, -2] 
         y = rows[:, -1] 
 
         # Distinguish the label depending on what we are plotting.

@@ -1,14 +1,7 @@
 #ifndef SHOOTING_METHOD_HPP
 #define SHOOTING_METHOD_HPP
 
-#include <iostream>
-#include <vector>
-#include <array>
-#include <fstream>
-#include <sstream>
-#include <string>
-#include "Integrator_Potential_Flow.hpp"
-
+#include "Solver.hpp"
 
 /**
     The class executes the shooting method executes as follows:
@@ -30,14 +23,16 @@
             literature. Set to 2.0 to solve for a short-range ising model.
         symmetry_factor_N**  
             For O(N) models, this is N. Set to 1.0 for the long-range model.
-        sigma_minima           Sigma is the index for the families of initial-
-                            conditions in the solution-space. This parameter
-                            is the minimum sigma in the range of families 
-                            that the algorithm will try to shoot for.
-        sigma_maxima           The maximum sigma in the range of families 
-                            that the algorithm will try to shoot for.
-        number_of_steps        The number of steps between the minima and
-                            maxima of sigma the algorithm will try for.
+        sigma_minima           
+            Sigma is the index for the families of initial-conditions in the
+            solution-space. This parameter is the minimum sigma in the range
+            of families that the algorithm will try to shoot for.
+        sigma_maxima          
+            The maximum sigma in the range of families that the algorithm will
+            try to shoot for.
+        sigma_delta        
+            The number of steps between the minima and maxima of sigma the 
+            algorithm will try for.
     * Note that this particular implementation does not solve for the anomalous 
     dimension self-consistently. Therefore, it is generally not recommended for 
     models with anomalous dimension; instead, this parameter should generally 
@@ -61,30 +56,35 @@
     represent real physical solutions to the RG-flow at fixed point. Each of 
     the peaks in the graph therefore represent (potentially) a critical point.
 */
-class Shooting_Method {
+class Shooting_Solver : public Solver {
 
     public:
 
         /**
             Simple static method to execute the shooting. 
         */
-        static int execute () {
+        int execute (
+            const std::string& input_filename,
+            const std::string& output_filename,
+            const std::string& configuration_filename) override {
 
-            // Input parameters.
-            double dimension;
-            double anomalous_dimension;
-            double s_factor;
-            double symmetry_factor_N;
-            double sigma_minima;
-            double sigma_maxima;
-            int number_of_steps;
-            
+            CONFIGURATION_FILENAME = configuration_filename;
+     
             // Opens input and opens or creates output file.
-            std::ifstream infile ("input_shooting.txt");
-            std::ofstream outfile ("output_shooting.txt");
+            std::ifstream infile (input_filename);
+            std::ofstream outfile (output_filename);
+
             // Throws an error if input file could not be openend. 
             if (!infile.is_open ()) {
                 std::cerr << "Error opening input file\n";
+                return 1;
+            }
+
+            // Reads configuration. 
+            const bool success = read_configuration_from_file 
+                (CONFIGURATION_FILENAME, integrator_potential);
+            if (!success) {
+                std::cerr << "Error reading configuration file\n";
                 return 1;
             }
 
@@ -93,32 +93,8 @@ class Shooting_Method {
             std::string line;
 
             while (std::getline (infile, line)) {
-    
-                // Ignores empty lines.
-                if (line.empty ()) continue;
-
-                std::stringstream ss (line);
-                std::string value;
-                std::vector<std::string> token;
-
-                // Comma-separated inputs.
-                while (std::getline(ss, value, ',')) {
-                    token.push_back(value);
-                }
-                // Ir row given in incorrect format, warns user. 
-                if (token.size() != 7) {
-                    std::cerr << "Invalid line: " << line << std::endl;
-                    continue;
-                }
-                // Tries to assign rows to the respective variables. 
                 try {
-                    dimension = std::stod (token[0]);
-                    anomalous_dimension = std::stod (token[1]);
-                    s_factor = std::stod (token[2]);
-                    symmetry_factor_N = std::stod (token[3]);
-                    sigma_minima = std::stod (token[4]);
-                    sigma_maxima = std::stod (token[5]);
-                    number_of_steps = std::stoi (token[6]);
+                    read_parameters_from_line (line, 7);
                 // If for a particular row any of the token provided could not be
                 // converted, ignore row and throws a warning to the user. 
                 } catch (...) {
@@ -130,32 +106,55 @@ class Shooting_Method {
                 // file, as comma-separated values; by ranging over the chosen
                 // values of sigma, and evaluating the asymptotic wavefunction 
                 // for each of them. 
-                for (int i = 0; i < number_of_steps; ++i) {
-                    double sigma = sigma_minima +
+                const std::vector<double> asymptotic_wavefunction = 
+                    find_asymptotic_wavefunction (s_factor);
+
+                for (int i = 0; i < sigma_delta; ++i) {
+                    const double sigma = sigma_minima +
                         (sigma_maxima - sigma_minima) * 
-                        i / (number_of_steps - 1.0);
-                    
-                    // Creates an instance of the integrator and computes
-                    // asymptotic wavefunction. 
-                    Integrator_Potential_Flow integrator (
-                        dimension, anomalous_dimension, s_factor, 
-                        symmetry_factor_N, sigma);
-                    double asymptotic_wavefunction = 
-                        integrator.compute_asymptotic_wavefunction ();
-                    // Store result as a row to the output file. 
+                        i / (sigma_delta - 1.0);
                     outfile << dimension << ","
                             << anomalous_dimension << ","
                             << s_factor << ","
                             << symmetry_factor_N << ","
                             << sigma << ","
-                            << asymptotic_wavefunction << "\n";
+                            << asymptotic_wavefunction[i] << "\n";
                 }
                 outfile << "\n";
             }
             return 0;
         }
 
+        std::vector<double> find_asymptotic_wavefunction (const double s_factor) {
 
+            std::vector<double> asymptotic_wavefunction;
+            for (int i = 0; i < sigma_delta; ++i) {
+                double sigma = sigma_minima +
+                    (sigma_maxima - sigma_minima) * 
+                    i / (sigma_delta - 1.0);
+                
+                // Creates an instance of the integrator_potential and computes
+                // asymptotic wavefunction. 
+                integrator_potential.initialize (
+                    dimension, anomalous_dimension, s_factor, 
+                    symmetry_factor_N, sigma);
+
+                asymptotic_wavefunction.push_back (
+                    integrator_potential.compute_asymptotic_value ()
+                );
+            }
+            return asymptotic_wavefunction;
+        }
+
+        void set_parameters (const std::vector<std::string>& token) override {
+            dimension = std::stod (token[0]);
+            anomalous_dimension = std::stod (token[1]);
+            s_factor = std::stod (token[2]);
+            symmetry_factor_N = std::stod (token[3]);
+            sigma_minima = std::stod (token[4]);
+            sigma_maxima = std::stod (token[5]);
+            sigma_delta = std::stoi (token[6]);
+        }
 };
 
 #endif
