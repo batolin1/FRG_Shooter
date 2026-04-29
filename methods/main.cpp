@@ -3,18 +3,26 @@
 #include "Initial_Condition_Solver.hpp"
 
 /**
-    The main executor for this programme. User selects whether to run the 
-    shooting method or the eigenperturbation method from the terminal. Notice
-    that the "input_shooting.txt" and "input_eigenperturbation.txt" files must
-    be aleady set up, otherwise an error is thrown. For more details on what 
-    each of the methods execute, read comments from the paper and furthermore 
-    from "Shooting_Method.hpp" and "Eigenperturbation_method.hpp".
+    Instructions:
+    1) User selects which of the solvers to be executed. Inputs are configured
+       from the "input-files" directory. Output is saved on the "output-files"
+       directory. Configurations can be set up from the "configurations" 
+       directory. These refer to numerical-stability configurations that affect
+       only the simulation speed and accuracy but not the actual physics. 
+    2) "Shooting solver", given inputs, identifies the points of multicritical 
+       phase transitions. "Shooting_plotter.py" then generates the spike plots
+       corresponding to those phase transitions. 
+    3) "Eigenperturbation solver", given inputs, finds the behaviour of the 
+        asymptotic eigenvector, which is then used to find the RG eigenvectors.
+        This is later plotted on "Shooting_plotter.py" too. 
+    4) "Initial Condition Solver", given inputs, specifically lists out all of
+        the (potential) fixed points over a range of s_factors. This can then 
+        be provided as input to the "Eigenperturbation solver" to find the 
+        corresponding RG eigenvalues. 
 */
-int main() {
+int main () {
 
-    // Simple selection menu for choosing between running the computation for
-    // the shooting method of for eigenperturbation method. 
-    
+    // The labels for the directories 
     std::string input_file;
     std::string output_file;
     const std::string output_directory = "output-files/";
@@ -22,13 +30,14 @@ int main() {
     const std::string  configuration_filename = 
         "configurations/configuration.txt";
 
+
+    // Simple selection menu.
     int choice;
-    
     std::cout << "=========================\n";
-    std::cout << " Choose method:\n";
-    std::cout << "1 - Shooting method\n";
-    std::cout << "2 - Eigenperturbation method\n";
-    std::cout << "3 - Initial condition algorithm\n";
+    std::cout << " Choose solver:\n";
+    std::cout << "1 - Fixed point solver\n";
+    std::cout << "2 - Eigenperturbation solver\n";
+    std::cout << "3 - Initial condition solver\n";
     std::cout << "=========================\n";
     std::cout << "Enter choice: ";
 
@@ -58,8 +67,8 @@ int main() {
         case 3: {
         std::cout << "Running Initial Condition method...\n";
         Initial_Condition_Solver initial_condition_solver;
-        input_file = input_directory + "input_identifier.txt";
-        output_file = output_directory + "output_identifier.txt";
+        input_file = input_directory + "input_initial_condition.txt";
+        output_file = output_directory + "output_initial_condition.txt";
         initial_condition_solver.execute
             (input_file, output_file, configuration_filename);
         std::cout << "Execution completed.";

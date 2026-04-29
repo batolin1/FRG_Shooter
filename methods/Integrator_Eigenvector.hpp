@@ -4,20 +4,20 @@
 #include "Integrator.hpp"
 
 /**
-    This class realizes the integration for the ODE corresponding to the 
-    linearized eigenvector equation, given a "guess" for the eigenvalue. 
+    Integrator for the ODE corresponding to the linearized eigenvector 
+    equation, given a "guess" for the eigenvalue. 
 */
 class Integrator_Eigenvector : public Integrator {
 
     public:
 
         /**
-            Constructs an instance of this class. For more detail regarding the
-            input parameters, see comments on "Eigenperturbation_Method.hpp".
+            Initializes the class. For more detail regarding the input 
+            parameters, see comments on "Eigenperturbation_Method.hpp".
             Crucially, sigma is the index parameter for the particular family  
             of initial conditions that integrates the ODE corresponding to the 
             RG flow of the potential at a fixed point. It thus characterizes
-            the particular fixed point being investigated. The wavefunction and
+            the particular fixed point being investigated. The field and
             the potential_prime trajectories correspond to the ODE evolution of
             the potential and derivatives at the fixed point of the RG flow. 
             Those trajectories are required as the ODE for the eigenvector 
@@ -31,7 +31,7 @@ class Integrator_Eigenvector : public Integrator {
                                           potential RG flow at a critical pt.
             @param eigenvalue             The "guess" eigenvalue corresponding
                                           to a potential solution of this ODE.
-            @param wavefunction           The trajectory for wavefunctions. 
+            @param field                  The trajectory for fields. 
             @param potential_0prime       The trajectory for the potential
                                           along the solution
                                           to the potential RG flow ODE. 
@@ -49,7 +49,7 @@ class Integrator_Eigenvector : public Integrator {
             const double s_factor,
             const double sigma, 
             const double eigenvalue, 
-            const trajectory& wavefunction, 
+            const trajectory& field, 
             const trajectory& potential_0prime, 
             const trajectory& potential_1prime, 
             const trajectory& potential_2prime) {
@@ -58,7 +58,7 @@ class Integrator_Eigenvector : public Integrator {
                 this->s_factor = s_factor;
                 this->sigma = sigma;
                 this->eigenvalue = eigenvalue;
-                this->wavefunction = wavefunction;
+                this->field = field;
                 this->potential_0prime = potential_0prime;
                 this->potential_1prime = potential_1prime;
                 this->potential_2prime = potential_2prime;
@@ -66,12 +66,13 @@ class Integrator_Eigenvector : public Integrator {
 
     private:
 
+        // The (trial) eigenvalue.
         double eigenvalue;
-
 
         /**
             Given a family labelled by an eigenvalue, calculates the initial
             conditions for the eigenvectors corresponding to this family.
+            Override of virutal method in abstract class. 
             @return               an array containing the first and second 
                                   derivatives of the potential at the initial
                                   condition and for the family sigma. 
@@ -91,21 +92,24 @@ class Integrator_Eigenvector : public Integrator {
                 (eigenvector * implied_s_factor);
             // Introduces perturbation to the initial condition. 
             const double eigenvector_perturbed = eigenvector + 
-                WAVEFUNCTION_PERTURBATION * eigenvector_derivative + 0.5 *
-                std::pow (WAVEFUNCTION_PERTURBATION, 2.0) * eigenvector_2derivative;
-            const double eigenvector_derivative_perturbed = eigenvector_derivative + 
-                WAVEFUNCTION_PERTURBATION * eigenvector_2derivative;
-
-            this->state = {eigenvector_perturbed, eigenvector_derivative_perturbed};
+                FIELD_PERTURBATION * eigenvector_derivative + 0.5 *
+                std::pow (FIELD_PERTURBATION, 2.0) * eigenvector_2derivative;
+            const double eigenvector_derivative_perturbed = 
+                eigenvector_derivative + 
+                FIELD_PERTURBATION * eigenvector_2derivative;
+            this->state = {
+                eigenvector_perturbed, 
+                eigenvector_derivative_perturbed};
         }
 
         /**
             The ordinary differential equation for the eigenvectors of the RG.
+            Override of virtual method in abstract class. 
             @param eigenvector               Array containing the eigenvector 
                                              and its first derivative. 
             @param eigenvector_derivative    Array for the first and second
                                              derivatives of the eigenvector.
-            @param wavefunction              The wavefunction at this step. 
+            @param field                     The field at this step. 
         */
         void ODE_step 
             (const integrable_element &state, 
@@ -128,7 +132,9 @@ class Integrator_Eigenvector : public Integrator {
                 state_derivative[1] = state_2derivative;
         }
 
-
+        /**
+             Override of virtual method. @see Integrator.
+        */
         bool termination_event() override {
             const bool is_termination_event =
             std::abs (state[1]) > PRACTICALLY_INFINITY ||
@@ -136,14 +142,17 @@ class Integrator_Eigenvector : public Integrator {
             return is_termination_event; 
         }
     
+        /**
+             Override of virtual method. @see Integrator.
+        */
         double result() override {
             return state[0];
         }
 
         /** 
-            An interpolation method to, given a wavefunction, extract the
+            An interpolation method to, given a field, extract the
             potentials and its derivatives. 
-            @param x             The wavefunction at which the interpolation
+            @param x             The field at which the interpolation
                                  is being evaluated. 
             @param derivative    Whether to extract zeroth, first or 
                                  second derivative. 
@@ -153,11 +162,11 @@ class Integrator_Eigenvector : public Integrator {
         double get_potential (const double x, const int derivative) {
             // Firs find index closest to the solution. 
             int i = 0;
-            while (i < wavefunction.size () && x > wavefunction[i]) {
+            while (i < field.size () && x > field [i]) {
                 i++;
             }
             // Handles out of boundary issues.
-            if (i >= wavefunction.size ()) i = wavefunction.size () - 1;
+            if (i >= field.size ()) i = field.size () - 1;
             if (i==0) i=1;
             // Chooses whether to take the zeroth, first, or second derivative.
             const trajectory* potential = nullptr;
@@ -170,10 +179,10 @@ class Integrator_Eigenvector : public Integrator {
             }
             // Interpolates between (i-1) and (i). 
             const double overstep = 
-                (x - wavefunction[i-1]) / 
-                (wavefunction[i] - wavefunction[i-1]);
-            const double y = (*potential)[i-1] + 
-                overstep * ((*potential)[i] - (*potential)[i-1]);
+                (x - field [i-1]) / 
+                (field [i] - field [i-1]);
+            const double y = (*potential) [i-1] + 
+                overstep * ((*potential) [i] - (*potential) [i-1]);
             return y;
         }
 };

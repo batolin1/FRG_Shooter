@@ -4,13 +4,12 @@
 #include "Solver.hpp"
 
 /**
-    This class executes the shooting method for the eigenperturbations, 
-    that is to say, for calculating the eigenvalues of the RG flow. In 
-    "input_eigenperturbation.txt", the user must supply the input 
-    parameters for the calculation. Each row will represent one execution 
-    and/or calculation of this shooting algorithm, and each input parameter 
-    is provided by columns, in comma-separated variables. The input parameters
-    are the following, that is to say:
+    This class executes the eigen-perturbation method, that is to say,  
+    for calculating the eigenvalues of the RG flow. In 
+    "input_eigenperturbation.txt", the user must supply the input parameters
+    for the calculation. A row will represent one execution of the algorithm.
+    Each input parameter is provided by columns, in comma-separated variables. 
+    The input parameters are the following, that is to say:
         1) dimension
             The dimensionality of the model, example a one-dimensional,
             two-dimensional, or three-dimensional scalar theory. 
@@ -48,18 +47,25 @@
 */
 class Eigenperturbation_Solver : public Solver {
 
+    private:
 
+        // Running parameters for this solver, user input. 
+        double eigenvalue_minima;
+        double eigenvalue_maxima;
+        int eigenvalue_delta;
 
     public:
 
         /**
-            Static method to realize the execution. 
+            Override implementation to execute eigenperturbation solver.
+            @see Solver for more details. 
         */
         int execute (
             const std::string& input_filename,
             const std::string& output_filename,
             const std::string& configuration_filename) override {
             
+            // Sets the configuration file. 
             CONFIGURATION_FILENAME = configuration_filename;
 
             // Opens input and opens or creates output file.
@@ -88,41 +94,37 @@ class Eigenperturbation_Solver : public Solver {
                     continue;
                 }
         
-
+                // Sets configuration to the integrator of the RG potential.
                 success = read_configuration_from_file 
                     (CONFIGURATION_FILENAME, integrator_potential);
                 if (!success) {
                     std::cerr << "Error reading configuration (shooting) file\n";
                     return 1;
                 }
+                // Sets configuration to the integrator of the eigenvector.
                 integrator_eigenvector.set_configuration(
                     practically_zero,
                     practically_infinity,
                     integration_time_default,
-                    wavefunction_perturbation,
-                    wavefunction_threshold
+                    field_perturbation,
+                    field_threshold
                 );
 
+                // Computes the trajectories for the potential and 
+                // its derivatives.
                 integrator_potential.initialize (
                     dimension, 
                     anomalous_dimension, 
                     s_factor, 
                     1.0, 
                     sigma);
-
                 integrator_potential.compute_asymptotic_value ();
 
-                // Saves the trajectory for the potential.
+                // Saves the trajectory for the potential if requested.
                 if (save_trajectories) {
                     save_trajectory_to_file ();
                 }
 
-                // Most eigenvalues are expected to stay within a small range. 
-                // Therefore, we constrain to [-5, +5]. In reality, one 
-                // remembers that exclusively that eigenvalues smaller than 
-                // zero are relevant eigendirections; and the positive 
-                // solutions are irrelevant eigendirections that provide higher
-                // order corrections.
                 // Loops over the proposed eigenvalues. 
                 for (int i = 0; i < eigenvalue_delta; ++i) {
                     double eigenvalue = eigenvalue_minima +
@@ -131,9 +133,12 @@ class Eigenperturbation_Solver : public Solver {
         
                     // Solves the shooting problem for the eigenvectors.
                     integrator_eigenvector.initialize (
-                        dimension, anomalous_dimension, s_factor,
-                        sigma, eigenvalue, 
-                        integrator_potential.get_wavefunction (),
+                        dimension,
+                        anomalous_dimension, 
+                        s_factor,
+                        sigma, 
+                        eigenvalue, 
+                        integrator_potential.get_field (),
                         integrator_potential.get_potential_0prime (),
                         integrator_potential.get_potential_1prime (),
                         integrator_potential.get_potential_2prime ());
@@ -152,6 +157,10 @@ class Eigenperturbation_Solver : public Solver {
             return 0;       
         }
 
+        /**
+            Override of virtual method in abstract class.
+            @see Solver for more details. 
+        */
         void set_parameters (const std::vector<std::string>& token) override {
             dimension = std::stod (token[0]);
             anomalous_dimension = std::stod (token[1]);
@@ -162,9 +171,12 @@ class Eigenperturbation_Solver : public Solver {
             eigenvalue_delta = std::stoi (token[6]);
         }
 
-
+        /**
+            Helper method to save trajectory to file. 
+        */
         void save_trajectory_to_file () {
 
+            // For each trajectory, creates a specific filename and creates it.
             std::stringstream string_stream;
             string_stream
                     << "output-files/trajectories/"
@@ -173,17 +185,17 @@ class Eigenperturbation_Solver : public Solver {
                     << "s-factor" << "=" << s_factor << "_"
                     << "sigma" << "=" << sigma
                     << ".txt";
-            
             const std::string file_path_and_name = string_stream.str();
             std::ofstream outfile (file_path_and_name);
-            
+            // Warns user if path not found (file not created).
             if (!outfile.is_open()) {
                 std::cerr << "Error opening file: " << file_path_and_name << "\n";
                 return;
             }
-            const int number_of_elements = integrator_potential.get_wavefunction ().size ();
+            // Loops over the elements, saving to file. 
+            const int number_of_elements = integrator_potential.get_field ().size ();
             for (int i = 0; i < number_of_elements; i++) {
-                outfile << integrator_potential.get_wavefunction() [i] << ",";
+                outfile << integrator_potential.get_field() [i] << ",";
             }
             outfile << "\n";
             for (int i = 0; i < number_of_elements; i++) {

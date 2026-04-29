@@ -4,17 +4,16 @@
 #include "Integrator.hpp"
 
 /**
-    An integrator class to perform the integration of the RG flow of the 
-    potential at the fixed point, given model parameters and an arbitrary 
-    initial condition indexed by sigma. 
+    Integrator for the ODE corresponding to the dimensionless potential
+    at the fixed point of the RG flow. 
 */
 class Integrator_Potential : public Integrator {
 
     public:
 
         /**
-            Constructs an instance of this class. For more details on the input
-            parameters, read comments on "Shooting_Method.hpp".
+            Initializes the class. For more details on the input parameters, 
+            read comments on "Shooting_Solver.hpp".
             @param dimension              The dimension of the model.
             @param anomalous_dimension    The anomalous dimension of the model.
             @param s_factor               The s-factor for the model.
@@ -36,11 +35,11 @@ class Integrator_Potential : public Integrator {
         }
 
         /**
-            Getter method for the wavefunction.
-            @return    the wavefunction. 
+            Getter method for the field.
+            @return    the field. 
         */
-        trajectory& get_wavefunction () {
-            return wavefunction;
+        trajectory& get_field () {
+            return field;
         }
 
         /**
@@ -72,7 +71,8 @@ class Integrator_Potential : public Integrator {
 
         /**
             Given a family labelled by sigma, this method calculates the 
-            initial conditions for the shooting method. 
+            initial conditions for the shooting method. Override of the 
+            virtual method. 
             @return         an array containing the first and second 
                             derivatives of the potential at the initial
                             condition and for the family sigma. 
@@ -88,84 +88,90 @@ class Integrator_Potential : public Integrator {
                 sigma / (s_constant * dimension_factor);
             // Introduces perturbation to the initial condition.
             const double potential_perturbed = potential + 
-                WAVEFUNCTION_PERTURBATION * potential_derivative + 0.5 *
-                std::pow (WAVEFUNCTION_PERTURBATION, 2.0) * potential_2derivative;
-            const double potential_derivative_perturbed = potential_derivative + 
-                WAVEFUNCTION_PERTURBATION * potential_2derivative;
+                FIELD_PERTURBATION * potential_derivative + 0.5 *
+                std::pow (FIELD_PERTURBATION, 2.0) * potential_2derivative;
+            const double potential_derivative_perturbed = 
+                potential_derivative + 
+                FIELD_PERTURBATION * potential_2derivative;
 
-            this->state = {potential_perturbed, potential_derivative_perturbed};
+            this->state = {
+                potential_perturbed, 
+                potential_derivative_perturbed};
         }
 
         /**
-            The ordinary differential equation corresponding to the RG flow
-            flow of the potential and its derivatives. In other words, this
-            method performs one step along the ODE. 
+            The ODE corresponding to the RG flow of the potential and its 
+            derivatives. Override of virtual method. 
             @param potential               An array containing the potential 
                                            and its first derivative. 
             @param potential_derivative    An array containing the first and
                                            second derivatives of the potential.
-            @param wavefunction            The wavefunction at this step. 
+            @param field                   The field at this step. 
         */
         void ODE_step 
             (const integrable_element &state, 
             integrable_element &state_derivative,
-            const double wavefunction) override {
+            const double field) override {
                 const double symmetry_contribution = - (symmetry_factor_N - 1.0) * 
                     dimension_factor * s_constant / (1.0 + state[0]);
                 const double denominator = 
                     symmetry_contribution + dimension * state[0] - 
-                    (dimension - implied_s_factor) * state[1] * wavefunction;
-                const double state_2derivative = 0.5 / wavefunction * (
-                    dimension_factor * s_constant / denominator - 1.0 - state[1]);
+                    (dimension - implied_s_factor) * state[1] * field;
+                const double state_2derivative = 0.5 / field * (
+                    dimension_factor * s_constant / denominator 
+                    - 1.0 - state[1]);
                 state_derivative[0] = state [1];
                 state_derivative[1] = state_2derivative;
         }
 
+        /**
+            Override of virtual method. @see Integrator.
+        */
         double result() override {
-            return asymptotic_wavefunction;
+            return asymptotic_field;
         }
 
+        /**
+             Override of virtual method. @see Integrator.
+        */
         bool termination_event() override {
-
             const double symmetry_contribution =
                 - (symmetry_factor_N - 1.0) *
                 dimension_factor * s_constant / (1.0 + state[0]);
-        
             const double denominator =
                 symmetry_contribution + dimension * state[0] -
-                (dimension - implied_s_factor) * state[1] * asymptotic_wavefunction;
-        
+                (dimension - implied_s_factor) * state[1] * asymptotic_field;
             const double state_2derivative =
-                0.5 / asymptotic_wavefunction * (
-                    dimension_factor * s_constant / denominator - 1.0 - state[1]
+                0.5 / asymptotic_field * (
+                    dimension_factor * s_constant / denominator 
+                    - 1.0 - state[1]
                 );
-        
             const double the_real_denominator =
                 1.0 + state[1] +
-                2.0 * asymptotic_wavefunction * state_2derivative;
-        
-            return
+                2.0 * asymptotic_field * state_2derivative;
+            const bool is_termination_event = 
                 std::abs(denominator) < PRACTICALLY_ZERO ||
                 std::abs(the_real_denominator) < PRACTICALLY_ZERO ||
                 std::abs(1.0 + state[1]) < PRACTICALLY_ZERO;
+            return is_termination_event;
         }
 
+        /**
+             Override of virtual method. @see Integrator.
+        */
         void on_success_step() override {
-
             const double symmetry_contribution =
                 - (symmetry_factor_N - 1.0) *
                 dimension_factor * s_constant / (1.0 + state[0]);
-        
             const double denominator =
                 symmetry_contribution + dimension * state[0] -
-                (dimension - implied_s_factor) * state[1] * asymptotic_wavefunction;
-        
+                (dimension - implied_s_factor) * state[1] * asymptotic_field;
             const double state_2derivative =
-                0.5 / asymptotic_wavefunction * (
-                    dimension_factor * s_constant / denominator - 1.0 - state[1]
+                0.5 / asymptotic_field * (
+                    dimension_factor * s_constant / denominator 
+                    - 1.0 - state[1]
                 );
-        
-            wavefunction.push_back(asymptotic_wavefunction);
+            field.push_back(asymptotic_field);
             potential_0prime.push_back(state[0]);
             potential_1prime.push_back(state[1]);
             potential_2prime.push_back(state_2derivative);
