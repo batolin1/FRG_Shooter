@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 from collections import defaultdict
 from itertools import cycle
 
-shooting_data = "output_files/output_shooting.txt"
-eigenperturbation_data = "output_files/output_eigenperturbation.txt"
+shooting_data = "output-files/output_shooting.txt"
+eigenperturbation_data = "output-files/output_eigenperturbation.txt"
 
 
 
@@ -22,9 +22,9 @@ def add_spikes(x, y, ax):
 
     # Prefixed parameters for identifying the spikes. 
     gradient_threshold = 1000
-    value_percentile = 50
-    lower_threshold = 0.002
-    upper_threshold = 0.95
+    value_percentile = 68
+    lower_threshold = 0.025
+    upper_threshold = 0.68
     
     # Sorts the dataset
     index = np.argsort(x)
@@ -48,17 +48,13 @@ def add_spikes(x, y, ax):
     for i, value in enumerate(spike_mask):
         # Also adds an arbitrary threshold beyond which spikes are to be 
         # regarded as spurious.
-        if (value and not in_spike and 
+        if (
+            value and not in_spike and 
             abs (x[i]) > lower_threshold and 
             abs (x[i]) < upper_threshold):
-            if (x[i] < 0):
-                # If the gradient was in [i], mark the [i+1] point.
-                scatter_x.append (x [i+1])
-                scatter_y.append (y [i+1])
-            else:
-                # The other way around when signs invert. 
-                scatter_x.append (x [i])
-                scatter_y.append (y [i])
+            # If the gradient was in [i], mark the [i+1] point.
+            scatter_x.append (x[i+1])
+            scatter_y.append (y[i+1])
             in_spike = True
         elif not value:
             in_spike = False
@@ -98,8 +94,8 @@ def generate_output (file_name):
 
         rows = np.array(rows)
         x = rows[:, -2] 
-        y = rows[:, -1]
-        #y = 1/ rows[:, -1] * (2 - rows [:, -3]) / rows [:,0] * 4
+        y = rows[:, -1] 
+
         # Distinguish the label depending on what we are plotting.
         label = ""
 
@@ -110,7 +106,7 @@ def generate_output (file_name):
             label = f"d={key[0]}, $\\eta$={key[1]}, s={key[2]}, $\\sigma$={key[3]}"
     
         # Actually plots.
-        ax.plot(x, y,  linestyle=next (line_cycler), label=label, alpha=0.7)
+        ax.plot(x, y, color="k",  linestyle=next (line_cycler), label=label, alpha=0.7)
 
         # For the shooting graph, also want to add the spikes. 
         if "shooting" in file_name:

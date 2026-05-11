@@ -1,94 +1,71 @@
-import os
 import numpy as np
 import matplotlib.pyplot as plt
+from collections import defaultdict
 
 
-def parse_label_from_filename(file_name):
-    """
-    Extract parameters from filename and build a LaTeX-style label.
-    """
-
-    name = file_name.replace(".txt", "")
-    parts = name.split("_")
-
-    params = {}
-    for part in parts:
-        key, value = part.split("=")
-        params[key] = value
-
-    # Match your convention (eigenperturbation-like case)
-    label = (
-        f"d={params['dimension']}, "
-        f"$\\eta$={params['anomalous-dimension']}, "
-        f"s={params['s-factor']}, "
-        f"$\\sigma$={params['sigma']}"
+def parse_label(dim, eta, s, sigma):
+    return (
+        f"d={dim}, "
+        f"$\\eta$={eta}, "
+        f"s={s}, "
+        f"$\\sigma$={sigma}"
     )
 
-    return label
 
-def plot_trajectory(file_path):
+def load_trajectories(file_path):
     """
-    Given a trajectory file (produced by the C++ code), this function reads
-    the data and plots potential_0prime as a function of the wavefunction.
-
-    @param file_path    path to the trajectory file
-    @return             (fig, ax) matplotlib objects
+    Reads ONE file containing MULTIPLE trajectories.
+    Groups rows by (dim, eta, s, sigma).
     """
 
-    # Read file (each line is a dataset)
-    with open(file_path, "r") as f:
-        lines = [line.strip() for line in f.readlines() if line.strip()]
+    data = np.loadtxt(file_path, delimiter=",")
 
-    # Convert lines into numpy arrays (ignore trailing commas)
-    data = [np.array([float(x) for x in line.split(",") if x]) for line in lines]
+    if data.ndim == 1:
+        data = data.reshape(1, -1)
 
-    # Assign variables according to C++ structure
-    wavefunction      = data[0]
-    potential_0prime  = data[1]
-    potential_1prime  = data[2]
-    potential_2prime  = data[3]
+    trajectories = defaultdict(lambda: {
+        "field": [], 
+        "U0": [],
+        "U1": [],
+        "U2": [],
+        "denominator": [],
+        "real_denominator": []})
 
-    # Extract parameters from filename for labeling
-    filename = os.path.basename(file_path)
-    label = parse_label_from_filename(filename)
+    for row in data:
+        dim, eta, s, sigma = row[:4]
 
-    # Create plot
-    fig, ax = plt.subplots(figsize=(8, 6))
+        key = (dim, eta, s, sigma)
 
-    ax.plot(
-        wavefunction,
-        potential_1prime,
-        linestyle='-',
-        color='k',
-        alpha=0.8,
-        label=label
-    )
+        trajectories[key]["field"].append(row[-6])
+        trajectories[key]["U0"].append(row[-5])
+        trajectories[key]["U1"].append(row[-4])
+        trajectories[key]["U2"].append(row[-3])
+        trajectories[key]["denominator"].append(row[-2])
+        trajectories[key]["real_denominator"].append(row[-1])
 
-    # Labels and styling
-    ax.set_xlabel(r"$\tilde{\rho}$", fontsize=14)
-    ax.set_ylabel(r"$\tilde{U}^{(1)}$", fontsize=14)
-    ax.set_title("Potential Derivative as a function of Field", fontsize=14)
-
-    ax.grid()
-    ax.legend()
-
-    return fig, ax
+    return trajectories
 
 
-def plot_all_trajectories(folder="output-files/trajectories"):
-    """
-    Reads all trajectory files in a folder and plots them one by one.
+def plot_file(file_path):
+    trajectories = load_trajectories(file_path)
 
-    @param folder    directory containing trajectory files
-    """
+ 
 
-    for filename in os.listdir(folder):
-        if filename.endswith(".txt"):
-            file_path = os.path.join(folder, filename)
+    for (dim, eta, s, sigma), t in trajectories.items():
+        fig, ax = plt.subplots(figsize=(8, 6))
+        ax.plot(
+            t["field"],
+            t["U2"],
+            ".",
+            label=parse_label(dim, eta, s, sigma),
+            alpha=0.8
+        )
 
-            fig, ax = plot_trajectory(file_path)
+        ax.set_xlabel(r"$\tilde{\rho}$")
+        ax.set_ylabel(r"$\tilde{U}^{(0)}$")
+        ax.set_title("Potential Derivative vs Field")
+        ax.grid()
+        ax.legend()
+        plt.show ()
 
-            # Show each plot separately
-            plt.show()
-
-plot_all_trajectories (folder="output-files/trajectories")
+plot_file("output_files/output_eigenperturbation_trajectory.txt")
