@@ -124,7 +124,7 @@ def generate_output (file_name):
         xlabel = r"$\sigma$"
         ylabel = r"$\rho_\infty ^{(\sigma)}$"
 
-    elif "eigenperturbation" in file_name:
+    else:
         title = "RG Eigendirections"
         xlabel = r"Eigenvalue $y$"
         ylabel = r"Asymptotic eigenvector $\nu_\infty$"
@@ -140,8 +140,20 @@ def generate_output (file_name):
     ax.legend ()
     return fig, ax
 
-# Generates the plot(s).
-ax, fig = generate_output (shooting_data)
-plt.show ()
-ax, fig = generate_output (eigenperturbation_data)
-plt.show ()
+
+from pathlib import Path
+import matplotlib.pyplot as plt
+
+output_dir = Path("output_files/1d_annealing_improved")
+
+for file_path in output_dir.glob("*.txt"):
+    print(f"Processing {file_path}")
+
+    fig, ax = generate_output(str(file_path))
+
+    # Optional: save the figure
+    fig.savefig(file_path.with_suffix(".png"), dpi=300)
+
+    plt.show()      # or remove this if you only want saved figures
+    plt.close(fig)  # prevents memory buildup
+

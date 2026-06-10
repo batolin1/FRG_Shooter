@@ -1,0 +1,1106 @@
+[2026-06-10 13:32:25] Reading and parsing from filename instruction.txt
+
+[2026-06-10 13:32:25] Instructions provided for 8 total requests.
+[2026-06-10 13:32:25] Processing the instruction for thread number 2: 
+id: f6115224-a703-429f-80b9-5d6d4ef3c8e5
+label: screening_solver
+input_filename: input_files/1d_annealing_pico_dimensions/s=1.60.txt
+output_filename: output_files/1d_annealing_pico_dimensions/s=1.60.txt
+configuration_filename: configurations/configuration.txt
+[2026-06-10 13:32:25] Reading and parsing from filename input_files/1d_annealing_pico_dimensions/s=1.60.txt
+
+[2026-06-10 13:32:25] Processing the instruction for thread number 3: 
+id: 18984381-3147-4b35-85cf-189637249658
+label: screening_solver
+input_filename: input_files/1d_annealing_pico_dimensions/s=1.70.txt
+output_filename: output_files/1d_annealing_pico_dimensions/s=1.70.txt
+configuration_filename: configurations/configuration.txt
+[2026-06-10 13:32:25] Reading and parsing from filename input_files/1d_annealing_pico_dimensions/s=1.70.txt
+
+[2026-06-10 13:32:25] Processing the instruction for thread number 1: 
+id: c888589b-2523-40c9-8411-c656b5d8db04
+label: screening_solver
+input_filename: input_files/1d_annealing_pico_dimensions/s=1.40.txt
+output_filename: output_files/1d_annealing_pico_dimensions/s=1.40.txt
+configuration_filename: configurations/configuration.txt
+[2026-06-10 13:32:25] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 1.6
+sigma_minima: -0.7
+sigma_maxima: -0.3
+anomalous_dimension_minima: 0.05
+anomalous_dimension_maxima: 0.6
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 13:32:25] Initiating simulated annealing (main process).
+[2026-06-10 13:32:25] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 1.7
+sigma_minima: -0.7
+sigma_maxima: -0.3
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.6
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 13:32:25] Initiating simulated annealing (main process).
+[2026-06-10 13:32:25] Processing the instruction for thread number 4: 
+id: d91144a2-6231-4f5f-82bb-97517f483b8a
+label: screening_solver
+input_filename: input_files/1d_annealing_pico_dimensions/s=1.75.txt
+output_filename: output_files/1d_annealing_pico_dimensions/s=1.75.txt
+configuration_filename: configurations/configuration.txt
+[2026-06-10 13:32:25] Reading and parsing from filename input_files/1d_annealing_pico_dimensions/s=1.75.txt
+
+[2026-06-10 13:32:25] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 1.75
+sigma_minima: -0.7
+sigma_maxima: -0.3
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.5
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 13:32:25] Initiating simulated annealing (main process).
+[2026-06-10 13:32:25] Reading and parsing from filename input_files/1d_annealing_pico_dimensions/s=1.40.txt
+
+[2026-06-10 13:32:25] Processing the instruction for thread number 7: 
+id: 73b89c62-4176-4763-b0e2-c322f627ea06
+label: screening_solver
+input_filename: input_files/1d_annealing_pico_dimensions/s=2.00.txt
+output_filename: output_files/1d_annealing_pico_dimensions/s=2.00.txt
+configuration_filename: configurations/configuration.txt
+[2026-06-10 13:32:25] Reading and parsing from filename input_files/1d_annealing_pico_dimensions/s=2.00.txt
+
+[2026-06-10 13:32:25] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 1.4
+sigma_minima: -0.7
+sigma_maxima: -0.3
+anomalous_dimension_minima: 0.05
+anomalous_dimension_maxima: 0.8
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 13:32:25] Initiating simulated annealing (main process).
+[2026-06-10 13:32:25] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 2
+sigma_minima: -0.9
+sigma_maxima: -0.7
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.4
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 13:32:25] Initiating simulated annealing (main process).
+[2026-06-10 13:32:25] Processing the instruction for thread number 5: 
+id: faff8126-af1f-40f8-8efa-b1f3a3feabb6
+label: screening_solver
+input_filename: input_files/1d_annealing_pico_dimensions/s=1.80.txt
+output_filename: output_files/1d_annealing_pico_dimensions/s=1.80.txt
+configuration_filename: configurations/configuration.txt
+[2026-06-10 13:32:25] Reading and parsing from filename input_files/1d_annealing_pico_dimensions/s=1.80.txt
+
+[2026-06-10 13:32:25] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 1.8
+sigma_minima: -0.7
+sigma_maxima: -0.3
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.6
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 13:32:25] Initiating simulated annealing (main process).
+[2026-06-10 13:32:25] Processing the instruction for thread number 6: 
+id: 696b701a-8eb2-480d-b9d7-ade1e7736161
+label: screening_solver
+input_filename: input_files/1d_annealing_pico_dimensions/s=1.90.txt
+output_filename: output_files/1d_annealing_pico_dimensions/s=1.90.txt
+configuration_filename: configurations/configuration.txt
+[2026-06-10 13:32:25] Reading and parsing from filename input_files/1d_annealing_pico_dimensions/s=1.90.txt
+
+[2026-06-10 13:32:25] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 1.9
+sigma_minima: -0.7
+sigma_maxima: -0.3
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.5
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 13:32:25] Initiating simulated annealing (main process).
+[2026-06-10 13:32:25] Processing the instruction for thread number 8: 
+id: 2d58b8e6-f58b-4458-b2c6-669f04abf6d6
+label: screening_solver
+input_filename: input_files/1d_annealing_pico_dimensions/s=2.20.txt
+output_filename: output_files/1d_annealing_pico_dimensions/s=2.20.txt
+configuration_filename: configurations/configuration.txt
+[2026-06-10 13:32:25] Reading and parsing from filename input_files/1d_annealing_pico_dimensions/s=2.20.txt
+
+[2026-06-10 13:32:25] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 2.2
+sigma_minima: -0.9
+sigma_maxima: -0.7
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.4
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 13:32:25] Initiating simulated annealing (main process).
+[2026-06-10 13:40:14] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 2.2
+sigma_minima: -0.7
+sigma_maxima: -0.3
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.4
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 13:40:14] Initiating simulated annealing (main process).
+[2026-06-10 13:42:26] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 1.4
+sigma_minima: -0.3
+sigma_maxima: -0.05
+anomalous_dimension_minima: 0.05
+anomalous_dimension_maxima: 0.8
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 13:42:26] Initiating simulated annealing (main process).
+[2026-06-10 13:42:49] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 2
+sigma_minima: -0.7
+sigma_maxima: -0.3
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.4
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 13:42:49] Initiating simulated annealing (main process).
+[2026-06-10 13:42:57] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 1.7
+sigma_minima: -0.3
+sigma_maxima: -0.05
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.6
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 13:42:57] Initiating simulated annealing (main process).
+[2026-06-10 13:43:04] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 1.6
+sigma_minima: -0.3
+sigma_maxima: -0.05
+anomalous_dimension_minima: 0.05
+anomalous_dimension_maxima: 0.6
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 13:43:04] Initiating simulated annealing (main process).
+[2026-06-10 13:43:20] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 1.8
+sigma_minima: -0.3
+sigma_maxima: -0.15
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.6
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 13:43:20] Initiating simulated annealing (main process).
+[2026-06-10 13:43:26] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 1.75
+sigma_minima: -0.3
+sigma_maxima: -0.15
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.5
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 13:43:26] Initiating simulated annealing (main process).
+[2026-06-10 13:43:39] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 1.9
+sigma_minima: -0.3
+sigma_maxima: -0.2
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.5
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 13:43:39] Initiating simulated annealing (main process).
+[2026-06-10 13:45:28] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 2.2
+sigma_minima: -0.3
+sigma_maxima: -0.05
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.4
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 13:45:28] Initiating simulated annealing (main process).
+[2026-06-10 13:49:12] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 2.2
+sigma_minima: -0.3
+sigma_maxima: -0.15
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.4
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 13:49:12] Initiating simulated annealing (main process).
+[2026-06-10 13:52:59] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 2.2
+sigma_minima: -0.15
+sigma_maxima: 0.05
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.4
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 13:52:59] Initiating simulated annealing (main process).
+[2026-06-10 13:53:18] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 1.4
+sigma_minima: -0.05
+sigma_maxima: 0.05
+anomalous_dimension_minima: 0.05
+anomalous_dimension_maxima: 0.8
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 13:53:18] Initiating simulated annealing (main process).
+[2026-06-10 13:53:44] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 1.7
+sigma_minima: -0.05
+sigma_maxima: 0.05
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.6
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 13:53:44] Initiating simulated annealing (main process).
+[2026-06-10 13:53:59] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 1.6
+sigma_minima: -0.05
+sigma_maxima: 0.05
+anomalous_dimension_minima: 0.05
+anomalous_dimension_maxima: 0.6
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 13:53:59] Initiating simulated annealing (main process).
+[2026-06-10 13:54:17] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 1.75
+sigma_minima: -0.15
+sigma_maxima: -0.05
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.5
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 13:54:17] Initiating simulated annealing (main process).
+[2026-06-10 13:54:29] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 1.8
+sigma_minima: -0.15
+sigma_maxima: -0.05
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.6
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 13:54:29] Initiating simulated annealing (main process).
+[2026-06-10 13:54:34] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 1.9
+sigma_minima: -0.2
+sigma_maxima: -0.1
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.5
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 13:54:34] Initiating simulated annealing (main process).
+[2026-06-10 13:54:36] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 2
+sigma_minima: -0.3
+sigma_maxima: -0.05
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.4
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 13:54:36] Initiating simulated annealing (main process).
+[2026-06-10 13:56:06] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 2.2
+sigma_minima: 0.05
+sigma_maxima: 0.1
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.4
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 13:56:06] Initiating simulated annealing (main process).
+[2026-06-10 13:59:32] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 2.2
+sigma_minima: 0.1
+sigma_maxima: 0.3
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.4
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 13:59:32] Initiating simulated annealing (main process).
+[2026-06-10 14:03:14] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 2.2
+sigma_minima: 0.3
+sigma_maxima: 0.7
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.4
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 14:03:14] Initiating simulated annealing (main process).
+[2026-06-10 14:04:02] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 1.4
+sigma_minima: 0.05
+sigma_maxima: 0.3
+anomalous_dimension_minima: 0.05
+anomalous_dimension_maxima: 0.8
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 14:04:02] Initiating simulated annealing (main process).
+[2026-06-10 14:04:26] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 1.7
+sigma_minima: 0.05
+sigma_maxima: 0.3
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.6
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 14:04:26] Initiating simulated annealing (main process).
+[2026-06-10 14:04:55] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 1.75
+sigma_minima: -0.05
+sigma_maxima: 0.05
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.5
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 14:04:55] Initiating simulated annealing (main process).
+[2026-06-10 14:05:01] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 1.6
+sigma_minima: 0.05
+sigma_maxima: 0.3
+anomalous_dimension_minima: 0.05
+anomalous_dimension_maxima: 0.6
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 14:05:01] Initiating simulated annealing (main process).
+[2026-06-10 14:05:15] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 1.8
+sigma_minima: -0.05
+sigma_maxima: 0.05
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.6
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 14:05:15] Initiating simulated annealing (main process).
+[2026-06-10 14:05:33] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 1.9
+sigma_minima: -0.1
+sigma_maxima: -0.05
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.5
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 14:05:33] Initiating simulated annealing (main process).
+[2026-06-10 14:06:19] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 2
+sigma_minima: -0.3
+sigma_maxima: -0.15
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.4
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 14:06:19] Initiating simulated annealing (main process).
+[2026-06-10 14:07:16] Formatting and writting from filename output_files/1d_annealing_pico_dimensions/s=2.20.txt
+
+[2026-06-10 14:07:20] Formatting and writting from filename output_files/1d_annealing_pico_dimensions/s=2.20.txtauxiliary_result
+
+[2026-06-10 14:12:29] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 1.4
+sigma_minima: 0.3
+sigma_maxima: 0.7
+anomalous_dimension_minima: 0.05
+anomalous_dimension_maxima: 0.8
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 14:12:29] Initiating simulated annealing (main process).
+[2026-06-10 14:13:14] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 1.7
+sigma_minima: 0.3
+sigma_maxima: 0.7
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.6
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 14:13:14] Initiating simulated annealing (main process).
+[2026-06-10 14:13:34] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 1.75
+sigma_minima: 0.05
+sigma_maxima: 0.1
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.5
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 14:13:34] Initiating simulated annealing (main process).
+[2026-06-10 14:13:39] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 1.6
+sigma_minima: 0.3
+sigma_maxima: 0.7
+anomalous_dimension_minima: 0.05
+anomalous_dimension_maxima: 0.6
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 14:13:39] Initiating simulated annealing (main process).
+[2026-06-10 14:13:57] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 1.8
+sigma_minima: 0.05
+sigma_maxima: 0.1
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.6
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 14:13:57] Initiating simulated annealing (main process).
+[2026-06-10 14:14:41] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 1.9
+sigma_minima: -0.05
+sigma_maxima: 0.05
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.5
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 14:14:41] Initiating simulated annealing (main process).
+[2026-06-10 14:15:52] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 2
+sigma_minima: -0.15
+sigma_maxima: 0.05
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.4
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 14:15:52] Initiating simulated annealing (main process).
+[2026-06-10 14:20:32] Formatting and writting from filename output_files/1d_annealing_pico_dimensions/s=1.40.txt
+
+[2026-06-10 14:20:34] Formatting and writting from filename output_files/1d_annealing_pico_dimensions/s=1.40.txtauxiliary_result
+
+[2026-06-10 14:21:09] Formatting and writting from filename output_files/1d_annealing_pico_dimensions/s=1.70.txt
+
+[2026-06-10 14:21:11] Formatting and writting from filename output_files/1d_annealing_pico_dimensions/s=1.70.txtauxiliary_result
+
+[2026-06-10 14:21:28] Formatting and writting from filename output_files/1d_annealing_pico_dimensions/s=1.60.txt
+
+[2026-06-10 14:21:30] Formatting and writting from filename output_files/1d_annealing_pico_dimensions/s=1.60.txtauxiliary_result
+
+[2026-06-10 14:21:48] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 1.75
+sigma_minima: 0.1
+sigma_maxima: 0.3
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.5
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 14:21:48] Initiating simulated annealing (main process).
+[2026-06-10 14:21:58] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 1.8
+sigma_minima: 0.1
+sigma_maxima: 0.3
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.6
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 14:21:58] Initiating simulated annealing (main process).
+[2026-06-10 14:22:21] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 1.9
+sigma_minima: 0.05
+sigma_maxima: 0.1
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.5
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 14:22:21] Initiating simulated annealing (main process).
+[2026-06-10 14:23:12] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 2
+sigma_minima: 0.05
+sigma_maxima: 0.1
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.4
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 14:23:12] Initiating simulated annealing (main process).
+[2026-06-10 14:27:53] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 1.75
+sigma_minima: 0.3
+sigma_maxima: 0.7
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.5
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 14:27:53] Initiating simulated annealing (main process).
+[2026-06-10 14:28:16] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 1.8
+sigma_minima: 0.3
+sigma_maxima: 0.7
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.6
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 14:28:16] Initiating simulated annealing (main process).
+[2026-06-10 14:28:21] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 1.9
+sigma_minima: 0.1
+sigma_maxima: 0.3
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.5
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 14:28:21] Initiating simulated annealing (main process).
+[2026-06-10 14:29:55] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 2
+sigma_minima: 0.1
+sigma_maxima: 0.3
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.4
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 14:29:55] Initiating simulated annealing (main process).
+[2026-06-10 14:33:44] Formatting and writting from filename output_files/1d_annealing_pico_dimensions/s=1.75.txt
+
+[2026-06-10 14:33:45] Formatting and writting from filename output_files/1d_annealing_pico_dimensions/s=1.75.txtauxiliary_result
+
+[2026-06-10 14:34:21] Formatting and writting from filename output_files/1d_annealing_pico_dimensions/s=1.80.txt
+
+[2026-06-10 14:34:23] Formatting and writting from filename output_files/1d_annealing_pico_dimensions/s=1.80.txtauxiliary_result
+
+[2026-06-10 14:34:30] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 1.9
+sigma_minima: 0.3
+sigma_maxima: 0.7
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.5
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 14:34:30] Initiating simulated annealing (main process).
+[2026-06-10 14:35:53] Initiating screening solver with the following parameters:
+dimension: 2
+s_factor: 2
+sigma_minima: 0.3
+sigma_maxima: 0.7
+anomalous_dimension_minima: 0.15
+anomalous_dimension_maxima: 0.4
+temperature: 1
+cooling_rate: 0.995
+number_of_iterations: 50
+number_of_steps: 1200
+temperature_subprocess: 0.2
+cooling_rate_subprocess: 0.9995
+number_of_steps_subprocess: 12000
+number_of_steps_window_search: 2
+run_subprocess: 0
+run_window_search: 0
+
+[2026-06-10 14:35:53] Initiating simulated annealing (main process).
+[2026-06-10 14:38:59] Formatting and writting from filename output_files/1d_annealing_pico_dimensions/s=1.90.txt
+
+[2026-06-10 14:39:01] Formatting and writting from filename output_files/1d_annealing_pico_dimensions/s=1.90.txtauxiliary_result
+
+[2026-06-10 14:40:05] Formatting and writting from filename output_files/1d_annealing_pico_dimensions/s=2.00.txt
+
+[2026-06-10 14:40:08] Formatting and writting from filename output_files/1d_annealing_pico_dimensions/s=2.00.txtauxiliary_result
+

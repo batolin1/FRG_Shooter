@@ -1,5 +1,5 @@
-// #ifndef SHOOTING_PROBLEM_SOLVER_HPP
-// #define SHOOTING_PROBLEM_SOLVER_HPP
+// #ifndef SHOOTING_SOLVER_HPP
+// #define SHOOTING_SOLVER_HPP
 
 // #include <vector>
 
@@ -14,22 +14,22 @@
 //     @brief A solver for the shooting problem. 
 //     @see Solver_Concept
 // */
-// class Shooting_Problem_Solver {
+// class Shooting_Solver_Parameter {
 
 
 //     public:
 
 //         // Some definitions
-//         using Parameter = Shooting_Problem_Solver_Parameter;
-//         using Result_Element = Shooting_Problem_Solver_Result_Element;
-//         using Output_Element = Shooting_Problem_Solver_Output_Element;
+//         using Parameter = Shooting_Solver_Parameter;
+//         using Result_Element = Shooting_Solver_Result_Element;
+//         using Output_Element = Shooting_Solver_Output_Element;
 
 //         /**
 //             @brief Instantiation method. 
 
 //             @param configuration    The numerical configurations for the solver.
 //         */
-//         Shooting_Problem_Solver (const Configuration& configuration) {
+//         Shooting_Solver_Parameter (const Configuration& configuration) {
 //                 this->configuration = configuration;
 //             }
 
@@ -61,9 +61,9 @@
 
 //             std::vector<Result_Element> result;
 
-//             for (int i = 0; i < param.sigma_delta; ++i) {
+//             for (int i = 0; i < param.sigma_steps; ++i) {
 //                 const double sigma = param.sigma_minima +
-//                 (param.sigma_maxima - param.sigma_minima) * i / (param.sigma_delta - 1.0);
+//                 (param.sigma_maxima - param.sigma_minima) * i / (param.sigma_steps - 1.0);
 
 //                 Potential_Integrator_Parameter integrator_parameter = 
 //                     parameter_builder::make_potential_integrator_parameter (param);

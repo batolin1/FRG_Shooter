@@ -9,6 +9,7 @@
 
 #include "concept.hpp"
 #include "reader/file_parsing_exception.hpp"
+#include "logger.hpp"
 
 namespace parameter_reader {
 
@@ -29,6 +30,10 @@ namespace parameter_reader {
     requires Parser_Concept<Parser, Parameter>
     static std::vector<Parameter> read (const std::string& filename) {
 
+        std::ostringstream oss;
+        oss << "Reading and parsing from filename " << filename << "\n";
+        Logger::instance().log (oss.str()); 
+
         std::vector<Parameter> result;
 
         std::ifstream file (filename);
@@ -42,6 +47,8 @@ namespace parameter_reader {
         while (std::getline (file, line)) {
 
             if (line.empty ()) continue;
+
+            if (line.front () == '/') continue; // Skip comments.
 
             std::stringstream ss (line);
             std::string value;

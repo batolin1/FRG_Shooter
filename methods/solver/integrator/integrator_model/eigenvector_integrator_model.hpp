@@ -7,6 +7,7 @@
 #include "structure.hpp"
 #include "solver/integrator/utils/parameter_builder.hpp"
 
+
 /**
     @brief A class representing an integrator model for the integral of the differential equation 
            for eigenvalues and eigenvectors near fixed point.
@@ -26,6 +27,8 @@ class Eigenvector_Integrator_Model {
         // The field 
         double asymptotic_field;
 
+        double threshold;
+
         /**
             @brief Initialization method to start this object. 
             
@@ -37,25 +40,18 @@ class Eigenvector_Integrator_Model {
             this->parameter = parameter;
             this-> configuration = configuration;
             asymptotic_field = configuration.field_perturbation;
+            threshold = parameter.trajectory.back ().field - configuration.field_perturbation;
 
             // The eigenvector at start is a free parameter so we fix to 1.0.
             const double eigenvector = 1.0;
-            const double prefactor = 
-                (1.0 + parameter.trajectory [0].potential_0prime) * 
-                (1.0 + parameter.trajectory [0].potential_0prime) /
+            const double eigenvector_derivative = - (parameter.dimension - parameter.eigenvalue) * 
+                (1.0 + parameter.trajectory [0].potential_1prime) * 
+                (1.0 + parameter.trajectory [0].potential_1prime) /
                 parameter.s_constant / parameter.dimension_factor;
-            const double eigenvector_derivative = 
-                -prefactor * (parameter.dimension + parameter.eigenvalue);
-            const double eigenvector_2derivative = 0.5 * prefactor * prefactor * 
-                (eigenvector + parameter.dimension) * (eigenvector * parameter.implied_s_factor);
-            // Introduces perturbation to the initial condition. 
-            const double eigenvector_perturbed = eigenvector + 
-                configuration.field_perturbation * eigenvector_derivative + 
-                0.5 * std::pow (configuration.field_perturbation, 2.0) * eigenvector_2derivative;
-            const double eigenvector_derivative_perturbed = 
-                eigenvector_derivative + configuration.field_perturbation * eigenvector_2derivative;
 
-            this->state = {eigenvector_perturbed, eigenvector_derivative_perturbed};
+            const double factor = parameter.s_constant * parameter.dimension_factor;
+            
+            this->state = {eigenvector, factor * eigenvector_derivative};
         }
 
 
@@ -71,13 +67,19 @@ class Eigenvector_Integrator_Model {
             std::array<double,2> &state_derivative, 
             const double field) {
 
-            const double potential_contribution = 
+            const double denominator = 
                 1.0 + get_potential (field, 1) + 2.0 * field * get_potential (field, 2);
-            const double prefactor = std::pow (potential_contribution, 2.0) / 
-                parameter.dimension_factor / parameter.s_constant;
+
+            if (denominator <= configuration.practically_zero) {
+                state_derivative [0] = configuration.practically_infinity;
+                state_derivative [1] = configuration.practically_infinity;
+            }
+
+            const double braket = (parameter.dimension - parameter.eigenvalue) * state [0] -
+                (parameter.dimension - parameter.implied_s_factor) * field * state [1];
             const double state_2derivative = - 0.5 / field * (
-                state [1] + prefactor * ((parameter.dimension + parameter.eigenvalue) * state [0] -
-                (parameter.dimension - parameter.implied_s_factor) * field * state [1]));
+                braket * denominator * denominator + state [1]);
+
             state_derivative [0] = state [1];
             state_derivative [1] = state_2derivative;
         }
@@ -89,8 +91,8 @@ class Eigenvector_Integrator_Model {
         */
         bool termination_event() {
             const bool is_termination_event =
-                std::abs (state [1]) > configuration.practically_infinity ||
-                std::abs (state [0]) > configuration.practically_infinity;
+                std::abs (state [1]) >= configuration.practically_infinity ||
+                std::abs (state [0]) >= configuration.practically_infinity ;
             return is_termination_event; 
         }
     
@@ -108,6 +110,10 @@ class Eigenvector_Integrator_Model {
         */
         void on_success_step () {}
 
+        double get_threshold () {
+            return threshold;
+        }
+
 
     private:
     
@@ -124,14 +130,15 @@ class Eigenvector_Integrator_Model {
             @param derivative    The derivative in question. 
             @return              The potential and/or derivatives. 
         */
-        double get_potential (const double x, const int derivative) {
-
-            
+        double get_potential (double x, const int derivative) {
     
             // First we already deal with boundary issues from above. If field 
             // provided above biggest maximum, use asymptotic continuation.
             if (x > parameter.trajectory.at (parameter.trajectory.size () - 1).field) {
-                return parameter_builder::get_asymtotic_continuation (x, derivative, parameter);
+                std::cout << "Triggered asymptotic continuatoin for x = " << x << std::endl;
+                std::cout << "Last trajectory element field: " << parameter.trajectory.at (parameter.trajectory.size () - 1).field << std::endl;
+                x = parameter.trajectory.at (parameter.trajectory.size () - 1).field;
+                // return parameter_builder::get_asymtotic_continuation (x, derivative, parameter);
             }
             
             // If not, first index closest to the solution. 

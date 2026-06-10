@@ -9,7 +9,6 @@
 #include "writer/result_writer.hpp"
 #include "concept.hpp"
 
-
 /**
     @brief A pipeline structure to execute the pipeline, that is, read the data from file,
            calculate numerical results, and store them back onto output files. 
@@ -20,8 +19,8 @@ template <
     Solver_Concept Solver, 
     typename Parser, 
     typename Formatter, 
-    typename Trajectory_Formatter = void,
-    typename Zero_Crossing_Formatter = void> 
+    typename Auxiliary_Formatter = void,
+    typename Trajectory_Formatter = void> 
 requires 
     Parser_Concept<Parser, typename Solver::Parameter> && 
     Formatter_Concept<Formatter, typename Solver::Output_Element> 
@@ -59,18 +58,17 @@ struct Pipeline {
 
         // Saves additional data if required -- The potential and derivatives as function of field. 
         if constexpr (!std::is_same_v<Trajectory_Formatter, void>) {
-            if (config.save_trajectories) {
                 result_writer::make_extended_trajectory (solver.get_result ());
                 result_writer::write<Trajectory_Formatter, Output_Element>(
                     output_file + "_trajectory", solver.get_result ());
-            }
         }
 
         // Saves additional data if required -- The points of zero crossing.
-        if constexpr (!std::is_same_v<Zero_Crossing_Formatter, void>) {
-            result_writer::write<Zero_Crossing_Formatter, Output_Element>(
-                output_file + "_zero_crossings", solver.get_result ());
+        if constexpr (!std::is_same_v<Auxiliary_Formatter, void>) {
+            result_writer::write<Auxiliary_Formatter, Output_Element>(
+                output_file + "auxiliary_result", solver.get_result ());
         }
+
 
         return 0;
     }

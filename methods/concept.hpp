@@ -63,6 +63,7 @@ requires (
     { i.termination_event () } -> std::same_as<bool>;
     { i.on_success_step () } -> std::same_as<void>;
     { i.get_result () } -> std::convertible_to<double>;
+    { i.get_threshold () } -> std::convertible_to<double>;
     { i.ODE_step (s, ds, t) } -> std::same_as<void>;
 };
 
@@ -74,7 +75,6 @@ template<typename P>
 concept Integrator_Parameter_Concept = requires (P p) {
     { p.dimension } -> std::convertible_to<double>;
     { p.anomalous_dimension } -> std::convertible_to<double>;
-    { p.symmetry_factor_N } -> std::convertible_to<double>;
     { p.s_factor } -> std::convertible_to<double>;
     { p.sigma } -> std::convertible_to<double>;
     { p.dimension_factor } -> std::convertible_to<double>;

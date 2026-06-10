@@ -33,6 +33,10 @@ namespace configuration_reader {
         // Reads the first line only. 
         std::string line;
         std::getline (configuration_file, line);
+        // If first line is comment, skip to second line actually. 
+        if (line.front () == '/') {
+            std::getline (configuration_file, line);
+        }
         std::stringstream ss (line);
         std::string value;
         std::vector<std::string> token;
@@ -43,7 +47,7 @@ namespace configuration_reader {
         }
 
         // Ir row given in incorrect format, throws error. 
-        if (token.size () != 8) {
+        if (token.size () != 12) {
             throw File_Parsing_Exception 
                 ("Incorrect number of tokens in configuration file");
         }
@@ -55,9 +59,13 @@ namespace configuration_reader {
             configuration.integration_time_default = std::stod (token [2]);
             configuration.field_perturbation = std::stod (token [3]);
             configuration.field_threshold = std::stod (token [4]);
-            configuration.save_trajectories = std::stoi (token [5]);
-            configuration.tolerance = std::stod (token [6]);
-            configuration.maximum_iterations = std::stoi (token [7]);
+            configuration.patching_threshold = std::stod (token [5]);
+            configuration.relaxation_grid_size = std::stoi (token [6]);
+            configuration.number_recalculations = std::stoi (token [7]);
+            configuration.tolerance = std::stod (token [8]);
+            configuration.absolute_tolerance = std::stod (token [9]);
+            configuration.window_size = std::stoi (token [10]);
+            configuration.window_range = std::stod (token [11]);
         // Throws error if fails.
         } catch (const std::exception& e) {
             throw File_Parsing_Exception (

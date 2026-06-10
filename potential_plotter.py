@@ -28,6 +28,9 @@ def load_trajectories(file_path):
         "U0": [],
         "U1": [],
         "U2": [],
+        "U0_shape": [],
+        "U1_shape": [],
+        "U2_shape": [],
         "denominator": [],
         "real_denominator": []})
 
@@ -36,10 +39,13 @@ def load_trajectories(file_path):
 
         key = (dim, eta, s, sigma)
 
-        trajectories[key]["field"].append(row[-6])
-        trajectories[key]["U0"].append(row[-5])
-        trajectories[key]["U1"].append(row[-4])
-        trajectories[key]["U2"].append(row[-3])
+        trajectories[key]["field"].append(row[-9])
+        trajectories[key]["U0"].append(row[-8])
+        trajectories[key]["U1"].append(row[-7])
+        trajectories[key]["U2"].append(row[-6])
+        trajectories[key]["U0_shape"].append(row[-5])
+        trajectories[key]["U1_shape"].append(row[-4])
+        trajectories[key]["U2_shape"].append(row[-3])
         trajectories[key]["denominator"].append(row[-2])
         trajectories[key]["real_denominator"].append(row[-1])
 
@@ -54,8 +60,8 @@ def plot_file(file_path):
     for (dim, eta, s, sigma), t in trajectories.items():
         fig, ax = plt.subplots(figsize=(8, 6))
         ax.plot(
-            t["field"],
-            t["U2"],
+            np.sqrt (2 * (t["field"] - min (t["field"]))),
+            t["U0"],
             ".",
             label=parse_label(dim, eta, s, sigma),
             alpha=0.8
@@ -68,4 +74,4 @@ def plot_file(file_path):
         ax.legend()
         plt.show ()
 
-plot_file("output_files/output_eigenperturbation_trajectory.txt")
+plot_file("output_files/eigenperturbations/old/s=1.70.txt_trajectory")
