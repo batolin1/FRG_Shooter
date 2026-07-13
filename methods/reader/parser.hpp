@@ -19,7 +19,7 @@ struct Shooting_Parameter_Parser {
         const std::vector<std::string>& token, Shooting_Solver_Parameter& param) {
             
         // Ir row given in incorrect format, igore row and warns user.
-        if (token.size () != 6) {
+        if (token.size () != 8) {
             return false;
         }
         
@@ -30,6 +30,8 @@ struct Shooting_Parameter_Parser {
             param.sigma_minima = std::stod (token [3]);
             param.sigma_maxima = std::stod (token [4]);
             param.sigma_steps = std::stoi (token [5]);
+            param.maximum_iterations = std::stoi (token[6]);
+            param.tolerance = std::stod (token[7]);
         } catch (...) {
             return false;
         }
@@ -48,7 +50,7 @@ struct Screening_Parameter_Parser {
         const std::vector<std::string>& token, Screening_Solver_Parameter& param) {
             
         // Ir row given in incorrect format, igore row and warns user.
-        if (token.size () != 17) {
+        if (token.size () != 20) {
             return false;
         }
         
@@ -69,13 +71,17 @@ struct Screening_Parameter_Parser {
             param.number_of_steps_window_search = std::stoi (token [13]);
             param.run_subprocess = token [14] == "true" ? true : false;
             param.run_window_search = token [15] == "true" ? true : false; 
-            param.search_anomalous_dimension = token [10] == "true" ? true : false;
+            param.search_anomalous_dimension = token [16] == "true" ? true : false;
+            param.number_of_recalculations = std::stoi (token [17]);
+            param.recalculation_tolerance = std::stod (token [18]);
+            param.recalculate = token [19] == "true" ? true : false;
         } catch (...) {
             return false;
         }
         return true;
     }
 };
+
 
 /**
     @brief A parser for input parameters for the grid search problem. 
@@ -112,37 +118,6 @@ struct Grid_Search_Parameter_Parser {
 
 
 /**
-    @brief A parser for input parameters for the initial condition problem. 
-    @see Parser_Concept
-*/
-struct Initial_Condition_Parameter_Parser {
-
-    static bool parse_token (
-        const std::vector<std::string>& token, Initial_Condition_Solver_Parameter& param) {
-            
-        // Ir row given in incorrect format, igore row and warns user.
-        if (token.size () != 8) {
-            return false;
-        }
-        
-        try {
-            param.dimension = std::stod (token [0]);
-            param.anomalous_dimension = std::stod (token [1]);
-            param.s_factor_minima = std::stod (token [2]);
-            param.s_factor_maxima = std::stod (token [3]);
-            param.s_factor_delta= std::stoi (token [4]);
-            param.sigma_minima = std::stod (token [5]);
-            param.sigma_maxima = std::stod (token [6]);
-            param.sigma_steps = std::stoi (token [7]);
-        } catch (...) {
-            return false;
-        }
-        return true;
-    }
-};
-
-
-/**
     @brief A parser for input parameters for the eigenvector problem. 
     @see Parser_Concept
 */
@@ -152,7 +127,7 @@ struct Eigenvector_Parameter_Parser {
         const std::vector<std::string>& token, Eigenvector_Solver_Parameter& param) {
             
         // Ir row given in incorrect format, igore row.
-        if (token.size () != 7) {
+        if (token.size () != 8) {
             return false;
         }
         
@@ -164,6 +139,7 @@ struct Eigenvector_Parameter_Parser {
             param.eigenvalue_minima = std::stod (token [4]);
             param.eigenvalue_maxima = std::stod (token [5]);
             param.eigenvalue_steps = std::stoi (token [6]);
+            param.search_anomalous_dimension = token [7] == "true" ? true : false;
         } catch (...) {
             return false;
         }

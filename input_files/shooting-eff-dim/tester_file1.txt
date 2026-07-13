@@ -1,0 +1,2 @@
+// dimension, anomalous_dimension, s_factor, sigma_minima, sigma_maxima, sigma_steps, number_recalcs, tolerance
+2.20, 0.12, 2.0, -0.95, 0.95, 8000, 2, 1e-4

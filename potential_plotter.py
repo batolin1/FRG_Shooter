@@ -74,4 +74,4 @@ def plot_file(file_path):
         ax.legend()
         plt.show ()
 
-plot_file("output_files/eigenperturbations/old/s=1.70.txt_trajectory")
+plot_file("output_files/eigenperturbations/pentacritical.txt_trajectory")

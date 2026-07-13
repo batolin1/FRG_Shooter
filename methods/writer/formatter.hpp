@@ -31,6 +31,30 @@ struct Shooting_Result_Formatter  {
     }
 };
 
+/**
+    @brief A formatter for output elements related to the shooting problem solver.
+    @see Formatter_Concept
+*/
+struct Shooting_Best_Result_Formatter  {
+
+    static std::string format (const Shooting_Solver_Output_Element& output_element) {
+
+        std::ostringstream oss;
+
+        for (const Shooting_Solver_Result_Element& r : output_element.spikes) {
+            oss << output_element.parameter.dimension << ","
+            << output_element.parameter.anomalous_dimension << ","
+            << output_element.parameter.s_factor << ","
+            << r.anomalous_dimension << ","
+            << r.sigma << ","
+            << r.asymptotic_field
+            << "\n";
+        }
+
+        return oss.str ();
+    }
+};
+
 
 /**
     @brief A formatter for output elements related to the screening problem solver.
@@ -79,6 +103,29 @@ struct Grid_Search_Result_Formatter  {
 };
 
 /**
+    @brief A formatter for output elements related to the grid search problem solver.
+    @see Formatter_Concept
+*/
+struct Grid_Search_Best_Result_Formatter  {
+
+    static std::string format (const Grid_Search_Solver_Output_Element& output_element) {
+
+        std::ostringstream oss;
+
+        for (const Grid_Search_Solver_Result_Element& r : output_element.spikes) {
+            oss << output_element.parameter.dimension << ","
+            << output_element.parameter.s_factor << ","
+            << r.anomalous_dimension << ","
+            << r.sigma << ","
+            << r.asymptotic_field
+            << "\n";
+        }
+
+        return oss.str ();
+    }
+};
+
+/**
     @brief A formatter for output elements related to the screening problem solver.
     @see Formatter_Concept
 */
@@ -100,33 +147,6 @@ struct Screening_Best_Result_Formatter  {
         return oss.str ();
     }
 };
-
-
-
-/**
-    @brief A formatter for output elements related to the initial condition problem solver.
-    @see Formatter_Concept
-*/
-struct Initial_Condition_Result_Formatter  {
-
-    static std::string format (
-        const Initial_Condition_Solver_Output_Element& output_element) {
-
-        std::ostringstream oss;
-
-        for (const Initial_Condition_Solver_Result_Element& r : output_element.result) {
-            oss << output_element.parameter.dimension << ","
-            << output_element.parameter.anomalous_dimension << ","
-            << r.anomalous_dimension << ","
-            << r.s_factor << ","
-            << r.spike
-            << "\n";
-        }
-
-        return oss.str ();
-    }
-};
-
 
 
 /**

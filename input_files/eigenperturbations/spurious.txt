@@ -1,0 +1,4 @@
+//d, eta, s, sigma, ranges, ., ., false -- Don't vary anomalous dimension in this case. 
+3.0, 0.904722, 2, 0.647791, -3, 3, 2000,false
+2.8, 0.9203, 2, 0.721506, -3, 3, 2000,false
+2.6, 0.913069, 2, 0.797879, -3, 3, 2000,false

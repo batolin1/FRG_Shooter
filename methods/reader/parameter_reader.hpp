@@ -63,6 +63,12 @@ namespace parameter_reader {
 
             if (Parser::parse_token (token, param)) {
                 result.push_back (param);
+            // Failed to parse token? Throw warning! 
+            } else {
+                std::ostringstream oss;
+                oss << "Failed to read row in filename" << filename
+                    << " due to wrong number of rows. \n";
+                Logger::instance ().log (oss.str ());
             }
         }
         return result;  

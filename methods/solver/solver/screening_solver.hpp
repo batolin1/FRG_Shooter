@@ -57,8 +57,9 @@ class Screening_Solver {
             output.clear ();
         }
 
-        void execute_for_single_step (const Parameter& param, double& temperature,
-            double& current_sigma, double& current_anomalous_dimension, double& asymptotic_field) {
+        void execute_for_single_step (const Parameter& param, double& temperature, 
+            double& current_sigma, double& current_anomalous_dimension, 
+            double& asymptotic_field, const double cooling_rate) {
   
 
                 double new_sigma = current_sigma + 
@@ -83,7 +84,14 @@ class Screening_Solver {
                 Potential_Integrator_Model  integrator_model;
                 // No need to save trajectory in this case.
                 integrator_model.save_trajectory = false; 
-                integrator::integrate (configuration, integrator_parameter, integrator_model);
+
+                if (param.recalculate) {
+                    integrator::integrate_model (
+                        configuration, integrator_parameter, integrator_model, 
+                        param.number_of_recalculations, param.recalculation_tolerance);
+                } else {
+                    integrator::integrate (configuration, integrator_parameter, integrator_model);
+                }
 
                 // Actually get asymptotic field at the point where cutoff occurs.
                 const double new_asymptotic_field = integrator_model.get_result ();
@@ -95,7 +103,7 @@ class Screening_Solver {
                 if (delta > 0 || std::exp(delta / temperature) > 
                     uniform_01_distribution(random_engine)) {
                         current_sigma = new_sigma;
-                        current_anomalous_dimension = new_eta;
+                        current_anomalous_dimension = integrator_parameter.anomalous_dimension;
                         asymptotic_field = new_asymptotic_field;
                         // If accepted, also store results. We won't store bad results as they 
                         // don't really help for anything. 
@@ -104,11 +112,11 @@ class Screening_Solver {
                         asymptotic_field_values.push_back (asymptotic_field);
                 }
                 // Cools-down the temperature. 
-                temperature *= param.cooling_rate;
+                temperature *= cooling_rate;
         }
 
         std::vector<double> execute_for_single_iteration (const Parameter& param, 
-            const int iteration, const double number_of_steps,
+            const int iteration, const int number_of_steps,
             const double start_temperature, const double cooling_rate, 
             double& current_sigma, double& current_anomalous_dimension) {
 
@@ -126,28 +134,35 @@ class Screening_Solver {
             integrator_parameter.anomalous_dimension = current_anomalous_dimension;
             Potential_Integrator_Model integrator_model;
             integrator_model.save_trajectory = false; // No need to save trajectory in this case.
-            integrator::integrate (configuration, integrator_parameter, integrator_model);
+            if (param.recalculate) {
+                integrator::integrate_model (configuration, integrator_parameter, integrator_model, 
+                    param.number_of_recalculations, param.recalculation_tolerance);
+            } else {
+                integrator::integrate (configuration, integrator_parameter, integrator_model);
+            }
+            
             double asymptotic_field = integrator_model.get_result ();
 
             // stores data from first run. 
             sigma_values.push_back (current_sigma);
-            anomalous_dimension_values.push_back (current_anomalous_dimension);
+            anomalous_dimension_values.push_back (integrator_parameter.anomalous_dimension);
             asymptotic_field_values.push_back (asymptotic_field);
 
             for (int step = 1; step < number_of_steps; step++) {
                 execute_for_single_step (param, temperature, current_sigma, 
-                    current_anomalous_dimension, asymptotic_field); 
+                    current_anomalous_dimension, asymptotic_field, cooling_rate); 
             }
 
-            // Actually creates the result elements and stores. 
-            for (int i = 0; i < sigma_values.size (); i++) {
-                Result_Element result_element;
-                result_element.asymptotic_field = asymptotic_field_values[i];
-                result_element.sigma = sigma_values[i];
-                result_element.anomalous_dimension = anomalous_dimension_values[i];
-                    result.push_back (result_element);   
+            if (configuration.save_subprocesses) {
+                // Actually creates the result elements and stores. 
+                for (int i = 0; i < sigma_values.size (); i++) {
+                    Result_Element result_element;
+                    result_element.asymptotic_field = asymptotic_field_values[i];
+                    result_element.sigma = sigma_values[i];
+                    result_element.anomalous_dimension = anomalous_dimension_values[i];
+                        result.push_back (result_element);   
+                }
             }
-
             // The best estimates. 
             std::vector<double> best_estimates; 
             best_estimates.push_back (current_sigma);
@@ -162,6 +177,7 @@ class Screening_Solver {
             const std::string run_window_search = param.run_window_search ? "true" : "false";
             const std::string search_anomalous_dimension = 
                 param.search_anomalous_dimension ? "true" : "false";
+            const std::string recalculate = param.recalculate ? "true" : "false";
 
             oss << "Initiating screening solver with the following parameters:" << "\n"
                 << "dimension: " <<  param.dimension << "\n"
@@ -180,7 +196,10 @@ class Screening_Solver {
                 << "number_of_steps_window_search: " <<  param.number_of_steps_window_search << "\n"
                 << "run_subprocess: " <<  run_subprocess << "\n"
                 << "run_window_search: " <<  run_window_search << "\n" 
-                << "search_anomalous_dimension: " << search_anomalous_dimension << "\n";
+                << "search_anomalous_dimension: " << search_anomalous_dimension << "\n"
+                << "number of recalculations: " << param.number_of_recalculations << "\n"
+                << "recalculation tolerance: " << param.recalculation_tolerance << "\n"
+                << "recalculate: " << recalculate << "\n";
             Logger::instance ().log (oss.str ());
         }
 
@@ -196,6 +215,10 @@ class Screening_Solver {
 
             // Create results' container. 
             result.clear ();
+            best_sigma_values.clear (); 
+            best_anomalous_dimension_values.clear (); 
+            best_asymptotic_field_values.clear (); 
+            best_result.clear ();
 
             // Initiates the distributions. 
             sigma_distribution = std::uniform_real_distribution<double> 
@@ -214,7 +237,7 @@ class Screening_Solver {
                     param.anomalous_dimension_minima;
                 const double temperature = param.temperature;
                 const double cooling_rate = param.cooling_rate;
-                const double number_of_steps = param.number_of_steps;
+                const int number_of_steps = param.number_of_steps;
                 const std::vector<double> best_estimates = execute_for_single_iteration (
                     param, iteration, number_of_steps, temperature, cooling_rate, 
                     current_sigma, current_anomalous_dimension);
@@ -237,7 +260,7 @@ class Screening_Solver {
                     // and one for the improvement process. 
                     const double temperature = param.temperature_subprocess;
                     const double cooling_rate = param.cooling_rate_subprocess;
-                    const double number_of_steps = param.number_of_steps_subprocess;
+                    const int number_of_steps = param.number_of_steps_subprocess;
                     const std::vector<double> best_estimates = execute_for_single_iteration 
                         (param, iteration, number_of_steps, temperature, cooling_rate, 
                         current_sigma, current_anomalous_dimension);
@@ -266,11 +289,13 @@ class Screening_Solver {
                     double best_anomalous_dimension = 0;
                     double best_asymptotic_field = 0;
                     for (const Grid_Search_Solver_Result_Element& r : e.result) {
-                        Result_Element result_element;
-                        result_element.asymptotic_field = r.asymptotic_field;
-                        result_element.sigma = r.sigma;
-                        result_element.anomalous_dimension = r.anomalous_dimension;
-                        result.push_back (result_element);
+                        if (configuration.save_subprocesses) {
+                            Result_Element result_element;
+                            result_element.asymptotic_field = r.asymptotic_field;
+                            result_element.sigma = r.sigma;
+                            result_element.anomalous_dimension = r.anomalous_dimension;
+                            result.push_back (result_element);
+                        }
                         if (r.asymptotic_field > best_asymptotic_field) {
                             best_sigma = r.sigma;
                             best_anomalous_dimension = r.anomalous_dimension;
@@ -292,8 +317,6 @@ class Screening_Solver {
                 result_element.anomalous_dimension = best_anomalous_dimension_values[i];
                 best_result.push_back (result_element);   
             }
-
-        
             Output_Element output_element;
             output_element.parameter = param;
             output_element.result = result;

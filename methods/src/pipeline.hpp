@@ -58,7 +58,6 @@ struct Pipeline {
 
         // Saves additional data if required -- The potential and derivatives as function of field. 
         if constexpr (!std::is_same_v<Trajectory_Formatter, void>) {
-                result_writer::make_extended_trajectory (solver.get_result ());
                 result_writer::write<Trajectory_Formatter, Output_Element>(
                     output_file + "_trajectory", solver.get_result ());
         }

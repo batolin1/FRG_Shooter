@@ -1,0 +1,4 @@
+// We want to search the anomalous dimension just for the sake of seeing what happens here.
+2, 0, 1.85, -0.0370992, -3,3,2000,false
+2, 0, 1.9, -0.126164, -3,3,2000,false
+2, 0, 1.95, -0.345225, -3,3,2000,false

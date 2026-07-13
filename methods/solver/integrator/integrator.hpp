@@ -101,6 +101,44 @@ namespace integrator {
             }
         }
     }
+
+    void integrate_model (
+        const Configuration& config, 
+        Potential_Integrator_Parameter& param, 
+        Potential_Integrator_Model& model, 
+        const int maximum_iterations, 
+        const double tolerance) {
+
+        const double damping = config.damping;
+
+        double old_anomalous_dimension = param.anomalous_dimension;
+        int counter = 0;
+        while (counter < maximum_iterations) {
+            counter++;
+            // Realize the integration
+            integrate (config, param, model);
+            // (re)Calculate anomalous dimension
+            const double anomalous_dimension = 
+                parameter_builder::recalculate_anomalous_dimension (param, model);
+
+            param.anomalous_dimension =  
+                damping * anomalous_dimension + (1.0 - damping) * old_anomalous_dimension;
+
+            // If newly-calculated parameter good already, no need to keep calculating...
+            const bool threshold_reached = 
+                std::abs (old_anomalous_dimension - param.anomalous_dimension) < tolerance;  
+            // If estimate already fairly bad, stop running. 
+            // const bool bad_estimate = model.asymptotic_field < 1.0;
+            if (threshold_reached) {
+                break;
+            }
+            old_anomalous_dimension = param.anomalous_dimension;
+        }
+        // if (counter >= maximum_iterations) {
+        //     std::cout << "Triggered maximum iterations at sigma = " << param.sigma << std::endl;
+        // }
+    }
+
 };
 
 #endif

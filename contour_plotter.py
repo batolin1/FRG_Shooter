@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.interpolate import griddata
+from scipy.stats import rankdata
 
 
 def process_file(filepath):
@@ -20,65 +21,69 @@ def process_file(filepath):
         ],
     )
 
-    # -----------------------
-    # Plot 1
-    # -----------------------
-    plt.figure(figsize=(8, 6))
-
-    sc = plt.scatter(
-        df["sigma"],
-        df["asymptotic_field"],
-        c=df["anomalous_dimension"],
-        cmap="viridis",
-        s=10,
-    )
-
-    plt.xlabel("Sigma")
-    plt.ylabel("Asymptotic Field")
-    plt.colorbar(sc, label="Anomalous Dimension")
-    plt.tight_layout()
-    plt.show()
-
     # # -----------------------
-    # # Plot 2
+    # # Plot 1
     # # -----------------------
     # plt.figure(figsize=(8, 6))
 
     # sc = plt.scatter(
     #     df["sigma"],
-    #     df["anomalous_dimension"],
-    #     c=df["asymptotic_field"],
-    #     cmap="viridis",
+    #     df["asymptotic_field"],
+    #     c=df["anomalous_dimension"],
+    #     cmap="YlGn",
     #     s=10,
     # )
 
     # plt.xlabel("Sigma")
-    # plt.ylabel("Anomalous Dimension")
-    # plt.colorbar(sc, label="Asymptotic Field")
+    # plt.ylabel("Asymptotic Field")
+    # plt.colorbar(sc, label="Anomalous Dimension")
     # plt.tight_layout()
     # plt.show()
 
-    # # -----------------------
-    # # 3D scatter
-    # # -----------------------
-    # fig = plt.figure(figsize=(10, 8))
-    # ax = fig.add_subplot(111, projection="3d")
+    z = df["asymptotic_field"]
+    z_norm = rankdata(z) / len(z)
+    # z_norm = z
 
-    # sc = ax.scatter(
-    #     df["sigma"],
-    #     df["anomalous_dimension"],
-    #     df["asymptotic_field"],
-    #     c=df["asymptotic_field"],
-    #     cmap="viridis",
-    #     s=10,
-    # )
+    # -----------------------
+    # Plot 2
+    # -----------------------
+    plt.figure(figsize=(8, 6))
 
-    # ax.set_xlabel("Sigma")
-    # ax.set_ylabel("Anomalous Dimension")
-    # ax.set_zlabel("Asymptotic Field")
+    sc = plt.scatter(
+        df["sigma"],
+        df["anomalous_dimension"],
+        c=z_norm,
+        cmap="YlGn",
+        s=10,
+    )
 
-    # fig.colorbar(sc, label="Asymptotic Field")
-    # plt.show()
+    plt.xlabel("Sigma")
+    plt.ylabel("Anomalous Dimension")
+    plt.colorbar(sc, label="Asymptotic Field")
+    plt.tight_layout()
+    plt.show()
+
+    # -----------------------
+    # 3D scatter
+    # -----------------------
+    fig = plt.figure(figsize=(10, 8))
+    ax = fig.add_subplot(111, projection="3d")
+
+    sc = ax.scatter(
+        df["sigma"],
+        df["anomalous_dimension"],
+        df["asymptotic_field"],
+        c=df["asymptotic_field"],
+        cmap="viridis",
+        s=10,
+    )
+
+    ax.set_xlabel("Sigma")
+    ax.set_ylabel("Anomalous Dimension")
+    ax.set_zlabel("Asymptotic Field")
+
+    fig.colorbar(sc, label="Asymptotic Field")
+    plt.show()
 
     # # -----------------------
     # # Interpolated surface
@@ -128,7 +133,7 @@ def process_file(filepath):
 
 
 # Process every .txt file in the folder
-folder = Path("output_files/1d_annealing_pico_dimensions")
+folder = Path("output_files/testers/annealing_fractional_dimensions")
 
 for filepath in folder.glob("*.txt"):
     process_file(filepath)

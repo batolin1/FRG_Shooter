@@ -5,7 +5,7 @@
 
 #include "structure.hpp"
 #include "solver/integrator/utils/parameter_builder.hpp"
-
+#include "solver/solver/utils/helper_utilities.hpp"
 #include "solver/integrator/integrator.hpp"
 #include "solver/integrator/integrator_model/potential_integrator_model.hpp"
 #include "logger.hpp"
@@ -90,6 +90,8 @@ class Grid_Search_Solver {
                     Potential_Integrator_Model integrator_model;
                     // No need to save trajectory in this case. 
                     integrator_model.save_trajectory = false;
+
+                    // Only one or two recalculations. 
                     integrator::integrate (configuration, integrator_parameter, integrator_model);
 
                     // Actually get asymptotic field at the point where cutoff occurs.
@@ -98,6 +100,7 @@ class Grid_Search_Solver {
                     Result_Element result_element;
                     result_element.asymptotic_field = asymptotic_field;
                     result_element.sigma = sigma;
+                    // Get anomalous dimension from re-calculation. 
                     result_element.anomalous_dimension = anomalous_dimension;
                     result.push_back (result_element);   
                     
@@ -179,16 +182,21 @@ class Grid_Search_Solver {
                 }
             }
 
+            // Find now the spikes.
+            const std::vector<int> indexes = 
+                helper_utilities::find_spike (configuration, result);
+
+            for (int index : indexes) {
+                spikes.push_back (result [index]); 
+            }
 
             // The result elements. 
             Output_Element output_element;
             output_element.parameter = param;
             output_element.result = result;
+            output_element.spikes = spikes;
             output.push_back (output_element);
         }
-
-
-
 
     private:
 
@@ -196,6 +204,7 @@ class Grid_Search_Solver {
         Configuration configuration;
         std::vector<Output_Element> output;
         std::vector<Result_Element> result;
+        std::vector<Result_Element> spikes;
 };
 
 #endif

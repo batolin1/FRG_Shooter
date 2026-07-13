@@ -1,2 +1,2 @@
-// practically_zero, practically_infinity, delta_rho, rho_start, rho_max, patching_threshold, relaxation_grid_size, number_recalculations, tolerance, absolute_tolerance, window_size, window_range
-1e-10, 1e+10, 1e-6, 1e-6, 1000.0, 1e3, 4000, 5, 1e-10, 1e-10, 100, 0.25
+// practically_zero, practically_infinity, delta_rho, rho_start, rho_max, patching_threshold, relaxation_grid_size, number_recalculations, tolerance, absolute_tolerance, window_size, window_range, damping,save_subprocesses
+1e-6, 1e+6, 1e-6, 1e-6, 2000.0, 1e4, 8000, 5, 1e-10, 1e-10, 100, 0.25, 0.05,true, 0.10, 20.0, 68.0, 0.02, 2.95

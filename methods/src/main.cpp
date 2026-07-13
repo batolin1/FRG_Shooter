@@ -2,6 +2,9 @@
 #include <stdexcept>
 #include <future>
 #include <fstream>
+#include <semaphore>
+#include <thread>
+#include <algorithm>
 
 #include "pipeline.hpp"
 #include "structure.hpp"
@@ -11,7 +14,6 @@
 #include "writer/formatter.hpp"
 #include "solver/solver/shooting_solver.hpp"
 #include "solver/solver/eigenvector_solver.hpp"
-#include "solver/solver/initial_condition_solver.hpp"
 #include "solver/solver/screening_solver.hpp"
 #include "solver/solver/grid_search_solver.hpp"
 #include "logger.hpp"
@@ -23,7 +25,6 @@ int process_request (const Instruction_Parameter& instruction, const int thread_
     const std::string grid_search_solver = "grid_search_solver";
     const std::string screening_solver = "screening_solver";
     const std::string shooting_solver = "shooting_solver";
-    const std::string initial_condition_solver = "initial_condition_solver";
 
     const Configuration config = configuration_reader::read (instruction.configuration_filename);
     const std::string input_filename = instruction.input_filename;
@@ -57,7 +58,8 @@ int process_request (const Instruction_Parameter& instruction, const int thread_
             Pipeline< 
                 Grid_Search_Solver,
                 Grid_Search_Parameter_Parser,
-                Grid_Search_Result_Formatter
+                Grid_Search_Result_Formatter,
+                Grid_Search_Best_Result_Formatter
                 >::run(
                     input_filename,
                     output_filename,
@@ -78,17 +80,8 @@ int process_request (const Instruction_Parameter& instruction, const int thread_
             Pipeline<
                 Shooting_Solver,
                 Shooting_Parameter_Parser,
-                Shooting_Result_Formatter 
-                >::run(
-                    "input_files/input_shooting.txt",
-                    "output_files/output_shooting.txt",
-                    config);
-    } else if (instruction.solver_name == initial_condition_solver) {
-        return
-            Pipeline<
-                Initial_Condition_Solver,
-                Initial_Condition_Parameter_Parser,
-                Initial_Condition_Result_Formatter 
+                Shooting_Result_Formatter,
+                Shooting_Best_Result_Formatter 
                 >::run(
                     input_filename,
                     output_filename,
@@ -100,43 +93,42 @@ int process_request (const Instruction_Parameter& instruction, const int thread_
 }
 
 int main () {
-
+    
     // Reads the instructions
     std::string input_file = "instruction.txt";
     std::vector<Instruction_Parameter> instructions =
-        parameter_reader::read<Instruction_Parameter, Instruction_Parameter_Parser>(input_file);
+        parameter_reader::read<Instruction_Parameter, Instruction_Parameter_Parser> (input_file);
 
     std::ostringstream oss;
-    oss << "Instructions provided for " << instructions.size () << " total requests."; 
-    Logger::instance().log (oss.str()); 
+    oss << "Instructions provided for " << instructions.size () << " total requests.";
+    Logger::instance ().log (oss.str ());
 
-    // Use multithreading. 
-    std::vector <std::future<void>> futures;
+    const unsigned int max_concurrency = std::max (1u, std::thread::hardware_concurrency ());
+    std::counting_semaphore<> sem(max_concurrency);
 
+    std::vector<std::future<void>> futures;
     int thread_number = 1;
 
-    // For each instruction, processes request given by user.
     for (const Instruction_Parameter& instruction : instructions) {
-        // Adds to asynch tasks. 
-        futures.push_back(
-            std::async(std::launch::async,
-                [instruction, thread_number]() {
-                    process_request(instruction, thread_number);
+        futures.push_back (
+            std::async (std::launch::async,
+                [instruction, thread_number, &sem]() {
+                    sem.acquire ();
+                    process_request (instruction, thread_number);
+                    sem.release ();
                 }
             )
         );
         thread_number++;
     }
 
-    // Send. 
     for (auto& future : futures) {
-        future.get();
+        future.get ();
     }
 
-    std::ofstream log_file("logs.txt");
-    for (const std::string& s : Logger::instance().get_messages()) {
+    std::ofstream log_file ("logs.txt");
+    for (const std::string& s : Logger::instance ().get_messages ()) {
         log_file << s << "\n";
     }
-
     return 0;
 }

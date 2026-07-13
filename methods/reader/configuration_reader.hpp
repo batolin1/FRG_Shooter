@@ -47,7 +47,7 @@ namespace configuration_reader {
         }
 
         // Ir row given in incorrect format, throws error. 
-        if (token.size () != 12) {
+        if (token.size () != 19) {
             throw File_Parsing_Exception 
                 ("Incorrect number of tokens in configuration file");
         }
@@ -66,6 +66,13 @@ namespace configuration_reader {
             configuration.absolute_tolerance = std::stod (token [9]);
             configuration.window_size = std::stoi (token [10]);
             configuration.window_range = std::stod (token [11]);
+            configuration.damping = std::stod (token [12]);
+            configuration.save_subprocesses = token [13] == "true" ? true : false;
+            configuration.grid_extension = std::stod (token [14]);
+            configuration.gradient_threshold = std::stod (token [15]);
+            configuration.value_percentile = std::stod (token [16]);
+            configuration.lower_threshold = std::stod (token [17]);
+            configuration.upper_threshold = std::stod (token [18]);
         // Throws error if fails.
         } catch (const std::exception& e) {
             throw File_Parsing_Exception (

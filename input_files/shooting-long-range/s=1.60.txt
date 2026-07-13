@@ -1,0 +1,2 @@
+// dimension, s_factor, sigma_minima, sigma_maxima, sigma_steps, eta_minima, eta_maxima, eta_steps, number_of_iterations, window_range, run_window_search
+2.0, 1.60, -0.95, 1.95, 12000, 0.0, 0.0, 1, 5, 0.25,false

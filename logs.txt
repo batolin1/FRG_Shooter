@@ -1,1106 +1,707 @@
-[2026-06-10 13:32:25] Reading and parsing from filename instruction.txt
+[2026-07-08 17:37:08] Reading and parsing from filename instruction.txt
 
-[2026-06-10 13:32:25] Instructions provided for 8 total requests.
-[2026-06-10 13:32:25] Processing the instruction for thread number 2: 
-id: f6115224-a703-429f-80b9-5d6d4ef3c8e5
-label: screening_solver
-input_filename: input_files/1d_annealing_pico_dimensions/s=1.60.txt
-output_filename: output_files/1d_annealing_pico_dimensions/s=1.60.txt
+[2026-07-08 17:37:08] Instructions provided for 2 total requests.
+[2026-07-08 17:37:08] Processing the instruction for thread number 1: 
+id: 3a983bf0-7309-42f3-90e3-9818dce8ca9c
+label: eigenvector_solver
+input_filename: input_files/eigenperturbations-long-range/bicritical.txt
+output_filename: output_files/eigenperturbations-long-range/bicritical.txt
 configuration_filename: configurations/configuration.txt
-[2026-06-10 13:32:25] Reading and parsing from filename input_files/1d_annealing_pico_dimensions/s=1.60.txt
+[2026-07-08 17:37:08] Reading and parsing from filename input_files/eigenperturbations-long-range/bicritical.txt
 
-[2026-06-10 13:32:25] Processing the instruction for thread number 3: 
-id: 18984381-3147-4b35-85cf-189637249658
-label: screening_solver
-input_filename: input_files/1d_annealing_pico_dimensions/s=1.70.txt
-output_filename: output_files/1d_annealing_pico_dimensions/s=1.70.txt
+[2026-07-08 17:37:08] Processing the instruction for thread number 2: 
+id: 0c930134-0c0f-42ff-b5ae-447d146bf63d
+label: eigenvector_solver
+input_filename: input_files/eigenperturbations-long-range/tricritical.txt
+output_filename: output_files/eigenperturbations-long-range/tricritical.txt
 configuration_filename: configurations/configuration.txt
-[2026-06-10 13:32:25] Reading and parsing from filename input_files/1d_annealing_pico_dimensions/s=1.70.txt
+[2026-07-08 17:37:08] Reading and parsing from filename input_files/eigenperturbations-long-range/tricritical.txt
 
-[2026-06-10 13:32:25] Processing the instruction for thread number 1: 
-id: c888589b-2523-40c9-8411-c656b5d8db04
-label: screening_solver
-input_filename: input_files/1d_annealing_pico_dimensions/s=1.40.txt
-output_filename: output_files/1d_annealing_pico_dimensions/s=1.40.txt
-configuration_filename: configurations/configuration.txt
-[2026-06-10 13:32:25] Initiating screening solver with the following parameters:
+[2026-07-08 17:37:08] Initiating eigenvector solver with the following parameters:
 dimension: 2
-s_factor: 1.6
-sigma_minima: -0.7
-sigma_maxima: -0.3
-anomalous_dimension_minima: 0.05
-anomalous_dimension_maxima: 0.6
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
+anomalous_dimension: 0
+s_factor: 1.3
+sigma: -0.163064
+eigenvalue_maxima: 3
+eigenvalue_minima: -3
+eigenvalue_steps: 2000
 
-[2026-06-10 13:32:25] Initiating simulated annealing (main process).
-[2026-06-10 13:32:25] Initiating screening solver with the following parameters:
+[2026-07-08 17:37:08] Initiating eigenvector solver with the following parameters:
 dimension: 2
-s_factor: 1.7
-sigma_minima: -0.7
-sigma_maxima: -0.3
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.6
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
+anomalous_dimension: 0
+s_factor: 1.4
+sigma: 0.00819477
+eigenvalue_maxima: 3
+eigenvalue_minima: -3
+eigenvalue_steps: 2000
 
-[2026-06-10 13:32:25] Initiating simulated annealing (main process).
-[2026-06-10 13:32:25] Processing the instruction for thread number 4: 
-id: d91144a2-6231-4f5f-82bb-97517f483b8a
-label: screening_solver
-input_filename: input_files/1d_annealing_pico_dimensions/s=1.75.txt
-output_filename: output_files/1d_annealing_pico_dimensions/s=1.75.txt
-configuration_filename: configurations/configuration.txt
-[2026-06-10 13:32:25] Reading and parsing from filename input_files/1d_annealing_pico_dimensions/s=1.75.txt
-
-[2026-06-10 13:32:25] Initiating screening solver with the following parameters:
+[2026-07-08 17:37:08] Initiating grid search with the following parameters:
 dimension: 2
-s_factor: 1.75
-sigma_minima: -0.7
-sigma_maxima: -0.3
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.5
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
+s_factor: 1.3
+sigma_minima: -0.17937
+sigma_maxima: -0.146758
+sigma_steps: 101
+anomalous_dimension_minima: 0
+anomalous_dimension_maxima: 0
+anomalous_dimension_steps: 101
+number_of_iterations: 5
+search anomalous dimension: false
+window_range: 0.25
 
-[2026-06-10 13:32:25] Initiating simulated annealing (main process).
-[2026-06-10 13:32:25] Reading and parsing from filename input_files/1d_annealing_pico_dimensions/s=1.40.txt
-
-[2026-06-10 13:32:25] Processing the instruction for thread number 7: 
-id: 73b89c62-4176-4763-b0e2-c322f627ea06
-label: screening_solver
-input_filename: input_files/1d_annealing_pico_dimensions/s=2.00.txt
-output_filename: output_files/1d_annealing_pico_dimensions/s=2.00.txt
-configuration_filename: configurations/configuration.txt
-[2026-06-10 13:32:25] Reading and parsing from filename input_files/1d_annealing_pico_dimensions/s=2.00.txt
-
-[2026-06-10 13:32:25] Initiating screening solver with the following parameters:
+[2026-07-08 17:37:08] Initiating grid search with the following parameters:
 dimension: 2
 s_factor: 1.4
-sigma_minima: -0.7
-sigma_maxima: -0.3
-anomalous_dimension_minima: 0.05
-anomalous_dimension_maxima: 0.8
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
+sigma_minima: 0.00737529
+sigma_maxima: 0.00901425
+sigma_steps: 101
+anomalous_dimension_minima: 0
+anomalous_dimension_maxima: 0
+anomalous_dimension_steps: 101
+number_of_iterations: 5
+search anomalous dimension: false
+window_range: 0.25
 
-[2026-06-10 13:32:25] Initiating simulated annealing (main process).
-[2026-06-10 13:32:25] Initiating screening solver with the following parameters:
+[2026-07-08 17:39:01] Following grid search calculation in eigenvector solver, obtained the following parameter improvement for comparison: 
+sigma input: 0.00819477
+sigma output: 0.00823005
+anomalous dimension input: 0
+anomalous dimension output: 0
+asymptotic field: 162.447
+Proceeding with calculation.
+
+[2026-07-08 17:39:01] Patching at index: 1826 field: 37.0831 expected_shape: 2.33333 actual_shape: 2.33253 delta: 0.000807886
+
+[2026-07-08 17:39:01] Following grid search calculation in eigenvector solver, obtained the following parameter improvement for comparison: 
+sigma input: -0.163064
+sigma output: -0.163147
+anomalous dimension input: 0
+anomalous dimension output: 0
+asymptotic field: 107.825
+Proceeding with calculation.
+
+[2026-07-08 17:39:01] Patching at index: 610 field: 8.22268 expected_shape: 1.85714 actual_shape: 1.85425 delta: 0.00289252
+
+[2026-07-08 17:46:36] Initiating eigenvector solver with the following parameters:
 dimension: 2
-s_factor: 2
-sigma_minima: -0.9
-sigma_maxima: -0.7
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.4
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
+anomalous_dimension: 0
+s_factor: 1.5
+sigma: 0.0422255
+eigenvalue_maxima: 3
+eigenvalue_minima: -3
+eigenvalue_steps: 2000
 
-[2026-06-10 13:32:25] Initiating simulated annealing (main process).
-[2026-06-10 13:32:25] Processing the instruction for thread number 5: 
-id: faff8126-af1f-40f8-8efa-b1f3a3feabb6
-label: screening_solver
-input_filename: input_files/1d_annealing_pico_dimensions/s=1.80.txt
-output_filename: output_files/1d_annealing_pico_dimensions/s=1.80.txt
-configuration_filename: configurations/configuration.txt
-[2026-06-10 13:32:25] Reading and parsing from filename input_files/1d_annealing_pico_dimensions/s=1.80.txt
-
-[2026-06-10 13:32:25] Initiating screening solver with the following parameters:
+[2026-07-08 17:46:36] Initiating grid search with the following parameters:
 dimension: 2
-s_factor: 1.8
-sigma_minima: -0.7
-sigma_maxima: -0.3
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.6
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
+s_factor: 1.5
+sigma_minima: 0.038003
+sigma_maxima: 0.046448
+sigma_steps: 101
+anomalous_dimension_minima: 0
+anomalous_dimension_maxima: 0
+anomalous_dimension_steps: 101
+number_of_iterations: 5
+search anomalous dimension: false
+window_range: 0.25
 
-[2026-06-10 13:32:25] Initiating simulated annealing (main process).
-[2026-06-10 13:32:25] Processing the instruction for thread number 6: 
-id: 696b701a-8eb2-480d-b9d7-ade1e7736161
-label: screening_solver
-input_filename: input_files/1d_annealing_pico_dimensions/s=1.90.txt
-output_filename: output_files/1d_annealing_pico_dimensions/s=1.90.txt
-configuration_filename: configurations/configuration.txt
-[2026-06-10 13:32:25] Reading and parsing from filename input_files/1d_annealing_pico_dimensions/s=1.90.txt
+[2026-07-08 17:48:29] Following grid search calculation in eigenvector solver, obtained the following parameter improvement for comparison: 
+sigma input: 0.0422255
+sigma output: 0.042271
+anomalous dimension input: 0
+anomalous dimension output: 0
+asymptotic field: 129.601
+Proceeding with calculation.
 
-[2026-06-10 13:32:25] Initiating screening solver with the following parameters:
+[2026-07-08 17:48:29] Patching at index: 1491 field: 24.1574 expected_shape: 3 actual_shape: 3.0018 delta: 0.00179594
+
+[2026-07-08 17:48:46] Initiating eigenvector solver with the following parameters:
 dimension: 2
-s_factor: 1.9
-sigma_minima: -0.7
-sigma_maxima: -0.3
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.5
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
+anomalous_dimension: 0
+s_factor: 1.4
+sigma: -0.23361
+eigenvalue_maxima: 3
+eigenvalue_minima: -3
+eigenvalue_steps: 2000
 
-[2026-06-10 13:32:25] Initiating simulated annealing (main process).
-[2026-06-10 13:32:25] Processing the instruction for thread number 8: 
-id: 2d58b8e6-f58b-4458-b2c6-669f04abf6d6
-label: screening_solver
-input_filename: input_files/1d_annealing_pico_dimensions/s=2.20.txt
-output_filename: output_files/1d_annealing_pico_dimensions/s=2.20.txt
-configuration_filename: configurations/configuration.txt
-[2026-06-10 13:32:25] Reading and parsing from filename input_files/1d_annealing_pico_dimensions/s=2.20.txt
-
-[2026-06-10 13:32:25] Initiating screening solver with the following parameters:
-dimension: 2
-s_factor: 2.2
-sigma_minima: -0.9
-sigma_maxima: -0.7
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.4
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
-
-[2026-06-10 13:32:25] Initiating simulated annealing (main process).
-[2026-06-10 13:40:14] Initiating screening solver with the following parameters:
-dimension: 2
-s_factor: 2.2
-sigma_minima: -0.7
-sigma_maxima: -0.3
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.4
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
-
-[2026-06-10 13:40:14] Initiating simulated annealing (main process).
-[2026-06-10 13:42:26] Initiating screening solver with the following parameters:
+[2026-07-08 17:48:46] Initiating grid search with the following parameters:
 dimension: 2
 s_factor: 1.4
-sigma_minima: -0.3
-sigma_maxima: -0.05
-anomalous_dimension_minima: 0.05
-anomalous_dimension_maxima: 0.8
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
+sigma_minima: -0.256971
+sigma_maxima: -0.210249
+sigma_steps: 101
+anomalous_dimension_minima: 0
+anomalous_dimension_maxima: 0
+anomalous_dimension_steps: 101
+number_of_iterations: 5
+search anomalous dimension: false
+window_range: 0.25
 
-[2026-06-10 13:42:26] Initiating simulated annealing (main process).
-[2026-06-10 13:42:49] Initiating screening solver with the following parameters:
+[2026-07-08 17:50:39] Following grid search calculation in eigenvector solver, obtained the following parameter improvement for comparison: 
+sigma input: -0.23361
+sigma output: -0.233615
+anomalous dimension input: 0
+anomalous dimension output: 0
+asymptotic field: 90.9565
+Proceeding with calculation.
+
+[2026-07-08 17:50:39] Patching at index: 551 field: 6.26541 expected_shape: 2.33333 actual_shape: 2.33178 delta: 0.0015551
+
+[2026-07-08 17:56:18] Initiating eigenvector solver with the following parameters:
 dimension: 2
-s_factor: 2
-sigma_minima: -0.7
-sigma_maxima: -0.3
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.4
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
+anomalous_dimension: 0
+s_factor: 1.6
+sigma: 0.120522
+eigenvalue_maxima: 3
+eigenvalue_minima: -3
+eigenvalue_steps: 2000
 
-[2026-06-10 13:42:49] Initiating simulated annealing (main process).
-[2026-06-10 13:42:57] Initiating screening solver with the following parameters:
-dimension: 2
-s_factor: 1.7
-sigma_minima: -0.3
-sigma_maxima: -0.05
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.6
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
-
-[2026-06-10 13:42:57] Initiating simulated annealing (main process).
-[2026-06-10 13:43:04] Initiating screening solver with the following parameters:
+[2026-07-08 17:56:18] Initiating grid search with the following parameters:
 dimension: 2
 s_factor: 1.6
-sigma_minima: -0.3
-sigma_maxima: -0.05
-anomalous_dimension_minima: 0.05
-anomalous_dimension_maxima: 0.6
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
+sigma_minima: 0.10847
+sigma_maxima: 0.132574
+sigma_steps: 101
+anomalous_dimension_minima: 0
+anomalous_dimension_maxima: 0
+anomalous_dimension_steps: 101
+number_of_iterations: 5
+search anomalous dimension: false
+window_range: 0.25
 
-[2026-06-10 13:43:04] Initiating simulated annealing (main process).
-[2026-06-10 13:43:20] Initiating screening solver with the following parameters:
+[2026-07-08 17:58:19] Following grid search calculation in eigenvector solver, obtained the following parameter improvement for comparison: 
+sigma input: 0.120522
+sigma output: 0.120532
+anomalous dimension input: 0
+anomalous dimension output: 0
+asymptotic field: 116.219
+Proceeding with calculation.
+
+[2026-07-08 17:58:19] Patching at index: 1281 field: 18.6118 expected_shape: 4 actual_shape: 4.0044 delta: 0.00439607
+
+[2026-07-08 18:01:29] Initiating eigenvector solver with the following parameters:
 dimension: 2
-s_factor: 1.8
-sigma_minima: -0.3
-sigma_maxima: -0.15
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.6
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
+anomalous_dimension: 0
+s_factor: 1.5
+sigma: -0.308565
+eigenvalue_maxima: 3
+eigenvalue_minima: -3
+eigenvalue_steps: 2000
 
-[2026-06-10 13:43:20] Initiating simulated annealing (main process).
-[2026-06-10 13:43:26] Initiating screening solver with the following parameters:
+[2026-07-08 18:01:29] Initiating grid search with the following parameters:
 dimension: 2
-s_factor: 1.75
-sigma_minima: -0.3
-sigma_maxima: -0.15
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.5
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
+s_factor: 1.5
+sigma_minima: -0.339421
+sigma_maxima: -0.277708
+sigma_steps: 101
+anomalous_dimension_minima: 0
+anomalous_dimension_maxima: 0
+anomalous_dimension_steps: 101
+number_of_iterations: 5
+search anomalous dimension: false
+window_range: 0.25
 
-[2026-06-10 13:43:26] Initiating simulated annealing (main process).
-[2026-06-10 13:43:39] Initiating screening solver with the following parameters:
+[2026-07-08 18:03:33] Following grid search calculation in eigenvector solver, obtained the following parameter improvement for comparison: 
+sigma input: -0.308565
+sigma output: -0.308584
+anomalous dimension input: 0
+anomalous dimension output: 0
+asymptotic field: 83.7295
+Proceeding with calculation.
+
+[2026-07-08 18:03:33] Patching at index: 490 field: 5.12907 expected_shape: 3 actual_shape: 2.99633 delta: 0.00366765
+
+[2026-07-08 18:06:19] Initiating eigenvector solver with the following parameters:
 dimension: 2
-s_factor: 1.9
-sigma_minima: -0.3
-sigma_maxima: -0.2
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.5
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
+anomalous_dimension: 0
+s_factor: 1.65
+sigma: 0.186781
+eigenvalue_maxima: 3
+eigenvalue_minima: -3
+eigenvalue_steps: 2000
 
-[2026-06-10 13:43:39] Initiating simulated annealing (main process).
-[2026-06-10 13:45:28] Initiating screening solver with the following parameters:
+[2026-07-08 18:06:19] Initiating grid search with the following parameters:
 dimension: 2
-s_factor: 2.2
-sigma_minima: -0.3
-sigma_maxima: -0.05
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.4
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
+s_factor: 1.65
+sigma_minima: 0.168103
+sigma_maxima: 0.205459
+sigma_steps: 101
+anomalous_dimension_minima: 0
+anomalous_dimension_maxima: 0
+anomalous_dimension_steps: 101
+number_of_iterations: 5
+search anomalous dimension: false
+window_range: 0.25
 
-[2026-06-10 13:45:28] Initiating simulated annealing (main process).
-[2026-06-10 13:49:12] Initiating screening solver with the following parameters:
+[2026-07-08 18:08:42] Following grid search calculation in eigenvector solver, obtained the following parameter improvement for comparison: 
+sigma input: 0.186781
+sigma output: 0.188118
+anomalous dimension input: 0
+anomalous dimension output: 0
+asymptotic field: 107.146
+Proceeding with calculation.
+
+[2026-07-08 18:08:43] Patching at index: 1238 field: 16.583 expected_shape: 4.71429 actual_shape: 4.71059 delta: 0.00369583
+
+[2026-07-08 18:13:27] Initiating eigenvector solver with the following parameters:
 dimension: 2
-s_factor: 2.2
-sigma_minima: -0.3
-sigma_maxima: -0.15
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.4
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
+anomalous_dimension: 0
+s_factor: 1.6
+sigma: -0.369921
+eigenvalue_maxima: 3
+eigenvalue_minima: -3
+eigenvalue_steps: 2000
 
-[2026-06-10 13:49:12] Initiating simulated annealing (main process).
-[2026-06-10 13:52:59] Initiating screening solver with the following parameters:
-dimension: 2
-s_factor: 2.2
-sigma_minima: -0.15
-sigma_maxima: 0.05
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.4
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
-
-[2026-06-10 13:52:59] Initiating simulated annealing (main process).
-[2026-06-10 13:53:18] Initiating screening solver with the following parameters:
-dimension: 2
-s_factor: 1.4
-sigma_minima: -0.05
-sigma_maxima: 0.05
-anomalous_dimension_minima: 0.05
-anomalous_dimension_maxima: 0.8
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
-
-[2026-06-10 13:53:18] Initiating simulated annealing (main process).
-[2026-06-10 13:53:44] Initiating screening solver with the following parameters:
-dimension: 2
-s_factor: 1.7
-sigma_minima: -0.05
-sigma_maxima: 0.05
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.6
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
-
-[2026-06-10 13:53:44] Initiating simulated annealing (main process).
-[2026-06-10 13:53:59] Initiating screening solver with the following parameters:
+[2026-07-08 18:13:27] Initiating grid search with the following parameters:
 dimension: 2
 s_factor: 1.6
-sigma_minima: -0.05
-sigma_maxima: 0.05
-anomalous_dimension_minima: 0.05
-anomalous_dimension_maxima: 0.6
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
+sigma_minima: -0.406913
+sigma_maxima: -0.332929
+sigma_steps: 101
+anomalous_dimension_minima: 0
+anomalous_dimension_maxima: 0
+anomalous_dimension_steps: 101
+number_of_iterations: 5
+search anomalous dimension: false
+window_range: 0.25
 
-[2026-06-10 13:53:59] Initiating simulated annealing (main process).
-[2026-06-10 13:54:17] Initiating screening solver with the following parameters:
+[2026-07-08 18:15:39] Following grid search calculation in eigenvector solver, obtained the following parameter improvement for comparison: 
+sigma input: -0.369921
+sigma output: -0.387437
+anomalous dimension input: 0
+anomalous dimension output: 0
+asymptotic field: 76.9087
+Proceeding with calculation.
+
+[2026-07-08 18:15:39] Patching at index: 448 field: 4.30743 expected_shape: 4 actual_shape: 3.99178 delta: 0.00821656
+
+[2026-07-08 18:16:23] Initiating eigenvector solver with the following parameters:
 dimension: 2
-s_factor: 1.75
-sigma_minima: -0.15
-sigma_maxima: -0.05
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.5
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
+anomalous_dimension: 0
+s_factor: 1.7
+sigma: 0.286711
+eigenvalue_maxima: 3
+eigenvalue_minima: -3
+eigenvalue_steps: 2000
 
-[2026-06-10 13:54:17] Initiating simulated annealing (main process).
-[2026-06-10 13:54:29] Initiating screening solver with the following parameters:
-dimension: 2
-s_factor: 1.8
-sigma_minima: -0.15
-sigma_maxima: -0.05
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.6
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
-
-[2026-06-10 13:54:29] Initiating simulated annealing (main process).
-[2026-06-10 13:54:34] Initiating screening solver with the following parameters:
-dimension: 2
-s_factor: 1.9
-sigma_minima: -0.2
-sigma_maxima: -0.1
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.5
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
-
-[2026-06-10 13:54:34] Initiating simulated annealing (main process).
-[2026-06-10 13:54:36] Initiating screening solver with the following parameters:
-dimension: 2
-s_factor: 2
-sigma_minima: -0.3
-sigma_maxima: -0.05
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.4
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
-
-[2026-06-10 13:54:36] Initiating simulated annealing (main process).
-[2026-06-10 13:56:06] Initiating screening solver with the following parameters:
-dimension: 2
-s_factor: 2.2
-sigma_minima: 0.05
-sigma_maxima: 0.1
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.4
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
-
-[2026-06-10 13:56:06] Initiating simulated annealing (main process).
-[2026-06-10 13:59:32] Initiating screening solver with the following parameters:
-dimension: 2
-s_factor: 2.2
-sigma_minima: 0.1
-sigma_maxima: 0.3
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.4
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
-
-[2026-06-10 13:59:32] Initiating simulated annealing (main process).
-[2026-06-10 14:03:14] Initiating screening solver with the following parameters:
-dimension: 2
-s_factor: 2.2
-sigma_minima: 0.3
-sigma_maxima: 0.7
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.4
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
-
-[2026-06-10 14:03:14] Initiating simulated annealing (main process).
-[2026-06-10 14:04:02] Initiating screening solver with the following parameters:
-dimension: 2
-s_factor: 1.4
-sigma_minima: 0.05
-sigma_maxima: 0.3
-anomalous_dimension_minima: 0.05
-anomalous_dimension_maxima: 0.8
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
-
-[2026-06-10 14:04:02] Initiating simulated annealing (main process).
-[2026-06-10 14:04:26] Initiating screening solver with the following parameters:
+[2026-07-08 18:16:23] Initiating grid search with the following parameters:
 dimension: 2
 s_factor: 1.7
-sigma_minima: 0.05
-sigma_maxima: 0.3
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.6
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
+sigma_minima: 0.25804
+sigma_maxima: 0.315382
+sigma_steps: 101
+anomalous_dimension_minima: 0
+anomalous_dimension_maxima: 0
+anomalous_dimension_steps: 101
+number_of_iterations: 5
+search anomalous dimension: false
+window_range: 0.25
 
-[2026-06-10 14:04:26] Initiating simulated annealing (main process).
-[2026-06-10 14:04:55] Initiating screening solver with the following parameters:
+[2026-07-08 18:18:35] Following grid search calculation in eigenvector solver, obtained the following parameter improvement for comparison: 
+sigma input: 0.286711
+sigma output: 0.286951
+anomalous dimension input: 0
+anomalous dimension output: 0
+asymptotic field: 103.05
+Proceeding with calculation.
+
+[2026-07-08 18:18:35] Patching at index: 1173 field: 15.1116 expected_shape: 5.66667 actual_shape: 5.67314 delta: 0.00647504
+
+[2026-07-08 18:25:23] Initiating eigenvector solver with the following parameters:
+dimension: 2
+anomalous_dimension: 0
+s_factor: 1.65
+sigma: -0.427565
+eigenvalue_maxima: 3
+eigenvalue_minima: -3
+eigenvalue_steps: 2000
+
+[2026-07-08 18:25:23] Initiating grid search with the following parameters:
+dimension: 2
+s_factor: 1.65
+sigma_minima: -0.470321
+sigma_maxima: -0.384808
+sigma_steps: 101
+anomalous_dimension_minima: 0
+anomalous_dimension_maxima: 0
+anomalous_dimension_steps: 101
+number_of_iterations: 5
+search anomalous dimension: false
+window_range: 0.25
+
+[2026-07-08 18:26:13] Initiating eigenvector solver with the following parameters:
+dimension: 2
+anomalous_dimension: 0
+s_factor: 1.75
+sigma: 0.434822
+eigenvalue_maxima: 3
+eigenvalue_minima: -3
+eigenvalue_steps: 2000
+
+[2026-07-08 18:26:13] Initiating grid search with the following parameters:
 dimension: 2
 s_factor: 1.75
-sigma_minima: -0.05
-sigma_maxima: 0.05
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.5
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
+sigma_minima: 0.39134
+sigma_maxima: 0.478304
+sigma_steps: 101
+anomalous_dimension_minima: 0
+anomalous_dimension_maxima: 0
+anomalous_dimension_steps: 101
+number_of_iterations: 5
+search anomalous dimension: false
+window_range: 0.25
 
-[2026-06-10 14:04:55] Initiating simulated annealing (main process).
-[2026-06-10 14:05:01] Initiating screening solver with the following parameters:
+[2026-07-08 18:27:40] Following grid search calculation in eigenvector solver, obtained the following parameter improvement for comparison: 
+sigma input: -0.427565
+sigma output: -0.428393
+anomalous dimension input: 0
+anomalous dimension output: 0
+asymptotic field: 72.2542
+Proceeding with calculation.
+
+[2026-07-08 18:27:40] Patching at index: 439 field: 3.96545 expected_shape: 4.71429 actual_shape: 4.73029 delta: 0.0160013
+
+[2026-07-08 18:28:37] Following grid search calculation in eigenvector solver, obtained the following parameter improvement for comparison: 
+sigma input: 0.434822
+sigma output: 0.434978
+anomalous dimension input: 0
+anomalous dimension output: 0
+asymptotic field: 98.0536
+Proceeding with calculation.
+
+[2026-07-08 18:28:37] Patching at index: 1133 field: 13.8886 expected_shape: 7 actual_shape: 7.00758 delta: 0.00757812
+
+[2026-07-08 18:36:52] Initiating eigenvector solver with the following parameters:
 dimension: 2
-s_factor: 1.6
-sigma_minima: 0.05
-sigma_maxima: 0.3
-anomalous_dimension_minima: 0.05
-anomalous_dimension_maxima: 0.6
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
+anomalous_dimension: 0
+s_factor: 1.8
+sigma: 0.667151
+eigenvalue_maxima: 3
+eigenvalue_minima: -3
+eigenvalue_steps: 2000
 
-[2026-06-10 14:05:01] Initiating simulated annealing (main process).
-[2026-06-10 14:05:15] Initiating screening solver with the following parameters:
+[2026-07-08 18:36:52] Initiating grid search with the following parameters:
 dimension: 2
 s_factor: 1.8
-sigma_minima: -0.05
-sigma_maxima: 0.05
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.6
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
+sigma_minima: 0.600436
+sigma_maxima: 0.733866
+sigma_steps: 101
+anomalous_dimension_minima: 0
+anomalous_dimension_maxima: 0
+anomalous_dimension_steps: 101
+number_of_iterations: 5
+search anomalous dimension: false
+window_range: 0.25
 
-[2026-06-10 14:05:15] Initiating simulated annealing (main process).
-[2026-06-10 14:05:33] Initiating screening solver with the following parameters:
+[2026-07-08 18:38:00] Initiating eigenvector solver with the following parameters:
 dimension: 2
-s_factor: 1.9
-sigma_minima: -0.1
-sigma_maxima: -0.05
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.5
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
+anomalous_dimension: 0
+s_factor: 1.7
+sigma: -0.470493
+eigenvalue_maxima: 3
+eigenvalue_minima: -3
+eigenvalue_steps: 2000
 
-[2026-06-10 14:05:33] Initiating simulated annealing (main process).
-[2026-06-10 14:06:19] Initiating screening solver with the following parameters:
-dimension: 2
-s_factor: 2
-sigma_minima: -0.3
-sigma_maxima: -0.15
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.4
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
-
-[2026-06-10 14:06:19] Initiating simulated annealing (main process).
-[2026-06-10 14:07:16] Formatting and writting from filename output_files/1d_annealing_pico_dimensions/s=2.20.txt
-
-[2026-06-10 14:07:20] Formatting and writting from filename output_files/1d_annealing_pico_dimensions/s=2.20.txtauxiliary_result
-
-[2026-06-10 14:12:29] Initiating screening solver with the following parameters:
-dimension: 2
-s_factor: 1.4
-sigma_minima: 0.3
-sigma_maxima: 0.7
-anomalous_dimension_minima: 0.05
-anomalous_dimension_maxima: 0.8
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
-
-[2026-06-10 14:12:29] Initiating simulated annealing (main process).
-[2026-06-10 14:13:14] Initiating screening solver with the following parameters:
+[2026-07-08 18:38:00] Initiating grid search with the following parameters:
 dimension: 2
 s_factor: 1.7
-sigma_minima: 0.3
-sigma_maxima: 0.7
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.6
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
+sigma_minima: -0.517542
+sigma_maxima: -0.423444
+sigma_steps: 101
+anomalous_dimension_minima: 0
+anomalous_dimension_maxima: 0
+anomalous_dimension_steps: 101
+number_of_iterations: 5
+search anomalous dimension: false
+window_range: 0.25
 
-[2026-06-10 14:13:14] Initiating simulated annealing (main process).
-[2026-06-10 14:13:34] Initiating screening solver with the following parameters:
+[2026-07-08 18:39:12] Following grid search calculation in eigenvector solver, obtained the following parameter improvement for comparison: 
+sigma input: 0.667151
+sigma output: 0.667307
+anomalous dimension input: 0
+anomalous dimension output: 0
+asymptotic field: 98.7571
+Proceeding with calculation.
+
+[2026-07-08 18:39:12] Patching at index: 1055 field: 13.0252 expected_shape: 9 actual_shape: 8.96732 delta: 0.032678
+
+[2026-07-08 18:40:11] Following grid search calculation in eigenvector solver, obtained the following parameter improvement for comparison: 
+sigma input: -0.470493
+sigma output: -0.470578
+anomalous dimension input: 0
+anomalous dimension output: 0
+asymptotic field: 67.8072
+Proceeding with calculation.
+
+[2026-07-08 18:40:11] Patching at index: 435 field: 3.68748 expected_shape: 5.66667 actual_shape: 5.66543 delta: 0.00123911
+
+[2026-07-08 18:47:49] Initiating eigenvector solver with the following parameters:
+dimension: 2
+anomalous_dimension: 0
+s_factor: 1.85
+sigma: 1.06391
+eigenvalue_maxima: 3
+eigenvalue_minima: -3
+eigenvalue_steps: 2000
+
+[2026-07-08 18:47:49] Initiating grid search with the following parameters:
+dimension: 2
+s_factor: 1.85
+sigma_minima: 0.957519
+sigma_maxima: 1.1703
+sigma_steps: 101
+anomalous_dimension_minima: 0
+anomalous_dimension_maxima: 0
+anomalous_dimension_steps: 101
+number_of_iterations: 5
+search anomalous dimension: false
+window_range: 0.25
+
+[2026-07-08 18:50:35] Initiating eigenvector solver with the following parameters:
+dimension: 2
+anomalous_dimension: 0
+s_factor: 1.75
+sigma: -0.514254
+eigenvalue_maxima: 3
+eigenvalue_minima: -3
+eigenvalue_steps: 2000
+
+[2026-07-08 18:50:35] Initiating grid search with the following parameters:
 dimension: 2
 s_factor: 1.75
-sigma_minima: 0.05
-sigma_maxima: 0.1
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.5
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
+sigma_minima: -0.565679
+sigma_maxima: -0.462829
+sigma_steps: 101
+anomalous_dimension_minima: 0
+anomalous_dimension_maxima: 0
+anomalous_dimension_steps: 101
+number_of_iterations: 5
+search anomalous dimension: false
+window_range: 0.25
 
-[2026-06-10 14:13:34] Initiating simulated annealing (main process).
-[2026-06-10 14:13:39] Initiating screening solver with the following parameters:
+[2026-07-08 18:50:56] Following grid search calculation in eigenvector solver, obtained the following parameter improvement for comparison: 
+sigma input: 1.06391
+sigma output: 1.06391
+anomalous dimension input: 0
+anomalous dimension output: 0
+asymptotic field: 93.094
+Proceeding with calculation.
+
+[2026-07-08 18:50:56] Patching at index: 1052 field: 12.2434 expected_shape: 12.3333 actual_shape: 12.4053 delta: 0.0719753
+
+[2026-07-08 18:52:51] Following grid search calculation in eigenvector solver, obtained the following parameter improvement for comparison: 
+sigma input: -0.514254
+sigma output: -0.514322
+anomalous dimension input: 0
+anomalous dimension output: 0
+asymptotic field: 67.7112
+Proceeding with calculation.
+
+[2026-07-08 18:52:51] Patching at index: 412 field: 3.48756 expected_shape: 7 actual_shape: 7.058 delta: 0.0579952
+
+[2026-07-08 19:00:51] Initiating eigenvector solver with the following parameters:
 dimension: 2
-s_factor: 1.6
-sigma_minima: 0.3
-sigma_maxima: 0.7
-anomalous_dimension_minima: 0.05
-anomalous_dimension_maxima: 0.6
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
+anomalous_dimension: 0
+s_factor: 1.9
+sigma: 1.85796
+eigenvalue_maxima: 3
+eigenvalue_minima: -3
+eigenvalue_steps: 2000
 
-[2026-06-10 14:13:39] Initiating simulated annealing (main process).
-[2026-06-10 14:13:57] Initiating screening solver with the following parameters:
+[2026-07-08 19:00:51] Initiating grid search with the following parameters:
+dimension: 2
+s_factor: 1.9
+sigma_minima: 1.67216
+sigma_maxima: 2.04376
+sigma_steps: 101
+anomalous_dimension_minima: 0
+anomalous_dimension_maxima: 0
+anomalous_dimension_steps: 101
+number_of_iterations: 5
+search anomalous dimension: false
+window_range: 0.25
+
+[2026-07-08 19:01:56] Initiating eigenvector solver with the following parameters:
+dimension: 2
+anomalous_dimension: 0
+s_factor: 1.8
+sigma: -0.560211
+eigenvalue_maxima: 3
+eigenvalue_minima: -3
+eigenvalue_steps: 2000
+
+[2026-07-08 19:01:56] Initiating grid search with the following parameters:
 dimension: 2
 s_factor: 1.8
-sigma_minima: 0.05
-sigma_maxima: 0.1
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.6
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
+sigma_minima: -0.616232
+sigma_maxima: -0.50419
+sigma_steps: 101
+anomalous_dimension_minima: 0
+anomalous_dimension_maxima: 0
+anomalous_dimension_steps: 101
+number_of_iterations: 5
+search anomalous dimension: false
+window_range: 0.25
 
-[2026-06-10 14:13:57] Initiating simulated annealing (main process).
-[2026-06-10 14:14:41] Initiating screening solver with the following parameters:
+[2026-07-08 19:03:06] Following grid search calculation in eigenvector solver, obtained the following parameter improvement for comparison: 
+sigma input: 1.85796
+sigma output: 1.85813
+anomalous dimension input: 0
+anomalous dimension output: 0
+asymptotic field: 102.267
+Proceeding with calculation.
+
+[2026-07-08 19:03:06] Patching at index: 932 field: 11.9156 expected_shape: 19 actual_shape: 18.8292 delta: 0.170816
+WARNING: poor asymptote match (delta = 0.170816)
+
+[2026-07-08 19:03:59] Following grid search calculation in eigenvector solver, obtained the following parameter improvement for comparison: 
+sigma input: -0.560211
+sigma output: -0.560207
+anomalous dimension input: 0
+anomalous dimension output: 0
+asymptotic field: 60.8989
+Proceeding with calculation.
+
+[2026-07-08 19:03:59] Patching at index: 432 field: 3.28895 expected_shape: 9 actual_shape: 8.98376 delta: 0.0162351
+
+[2026-07-08 19:13:25] Initiating eigenvector solver with the following parameters:
+dimension: 2
+anomalous_dimension: 0
+s_factor: 1.85
+sigma: -0.609135
+eigenvalue_maxima: 3
+eigenvalue_minima: -3
+eigenvalue_steps: 2000
+
+[2026-07-08 19:13:25] Initiating grid search with the following parameters:
+dimension: 2
+s_factor: 1.85
+sigma_minima: -0.670048
+sigma_maxima: -0.548222
+sigma_steps: 101
+anomalous_dimension_minima: 0
+anomalous_dimension_maxima: 0
+anomalous_dimension_steps: 101
+number_of_iterations: 5
+search anomalous dimension: false
+window_range: 0.25
+
+[2026-07-08 19:16:06] Following grid search calculation in eigenvector solver, obtained the following parameter improvement for comparison: 
+sigma input: -0.609135
+sigma output: -0.609325
+anomalous dimension input: 0
+anomalous dimension output: 0
+asymptotic field: 61.0714
+Proceeding with calculation.
+
+[2026-07-08 19:16:06] Patching at index: 417 field: 3.18375 expected_shape: 12.3333 actual_shape: 12.2578 delta: 0.0755329
+
+[2026-07-08 19:20:41] Initiating eigenvector solver with the following parameters:
+dimension: 2
+anomalous_dimension: 0
+s_factor: 1.95
+sigma: 4.17161
+eigenvalue_maxima: 3
+eigenvalue_minima: -3
+eigenvalue_steps: 2000
+
+[2026-07-08 19:20:41] Initiating grid search with the following parameters:
+dimension: 2
+s_factor: 1.95
+sigma_minima: 3.75445
+sigma_maxima: 4.58877
+sigma_steps: 101
+anomalous_dimension_minima: 0
+anomalous_dimension_maxima: 0
+anomalous_dimension_steps: 101
+number_of_iterations: 5
+search anomalous dimension: false
+window_range: 0.25
+
+[2026-07-08 19:23:03] Following grid search calculation in eigenvector solver, obtained the following parameter improvement for comparison: 
+sigma input: 4.17161
+sigma output: 4.17164
+anomalous dimension input: 0
+anomalous dimension output: 0
+asymptotic field: 101.512
+Proceeding with calculation.
+
+[2026-07-08 19:23:03] Patching at index: 943 field: 11.9672 expected_shape: 39 actual_shape: 39.6235 delta: 0.623518
+WARNING: poor asymptote match (delta = 0.623518)
+
+[2026-07-08 19:27:38] Initiating eigenvector solver with the following parameters:
+dimension: 2
+anomalous_dimension: 0
+s_factor: 1.9
+sigma: -0.663798
+eigenvalue_maxima: 3
+eigenvalue_minima: -3
+eigenvalue_steps: 2000
+
+[2026-07-08 19:27:38] Initiating grid search with the following parameters:
 dimension: 2
 s_factor: 1.9
-sigma_minima: -0.05
-sigma_maxima: 0.05
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.5
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
+sigma_minima: -0.730178
+sigma_maxima: -0.597418
+sigma_steps: 101
+anomalous_dimension_minima: 0
+anomalous_dimension_maxima: 0
+anomalous_dimension_steps: 101
+number_of_iterations: 5
+search anomalous dimension: false
+window_range: 0.25
 
-[2026-06-10 14:14:41] Initiating simulated annealing (main process).
-[2026-06-10 14:15:52] Initiating screening solver with the following parameters:
+[2026-07-08 19:29:53] Following grid search calculation in eigenvector solver, obtained the following parameter improvement for comparison: 
+sigma input: -0.663798
+sigma output: -0.663964
+anomalous dimension input: 0
+anomalous dimension output: 0
+asymptotic field: 60.7806
+Proceeding with calculation.
+
+[2026-07-08 19:29:53] Patching at index: 412 field: 3.1306 expected_shape: 19 actual_shape: 19.3951 delta: 0.395121
+WARNING: poor asymptote match (delta = 0.395121)
+
+[2026-07-08 19:52:38] Initiating eigenvector solver with the following parameters:
 dimension: 2
-s_factor: 2
-sigma_minima: -0.15
-sigma_maxima: 0.05
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.4
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
+anomalous_dimension: 0
+s_factor: 1.95
+sigma: -0.730567
+eigenvalue_maxima: 3
+eigenvalue_minima: -3
+eigenvalue_steps: 2000
 
-[2026-06-10 14:15:52] Initiating simulated annealing (main process).
-[2026-06-10 14:20:32] Formatting and writting from filename output_files/1d_annealing_pico_dimensions/s=1.40.txt
-
-[2026-06-10 14:20:34] Formatting and writting from filename output_files/1d_annealing_pico_dimensions/s=1.40.txtauxiliary_result
-
-[2026-06-10 14:21:09] Formatting and writting from filename output_files/1d_annealing_pico_dimensions/s=1.70.txt
-
-[2026-06-10 14:21:11] Formatting and writting from filename output_files/1d_annealing_pico_dimensions/s=1.70.txtauxiliary_result
-
-[2026-06-10 14:21:28] Formatting and writting from filename output_files/1d_annealing_pico_dimensions/s=1.60.txt
-
-[2026-06-10 14:21:30] Formatting and writting from filename output_files/1d_annealing_pico_dimensions/s=1.60.txtauxiliary_result
-
-[2026-06-10 14:21:48] Initiating screening solver with the following parameters:
+[2026-07-08 19:52:38] Initiating grid search with the following parameters:
 dimension: 2
-s_factor: 1.75
-sigma_minima: 0.1
-sigma_maxima: 0.3
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.5
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
+s_factor: 1.95
+sigma_minima: -0.803624
+sigma_maxima: -0.65751
+sigma_steps: 101
+anomalous_dimension_minima: 0
+anomalous_dimension_maxima: 0
+anomalous_dimension_steps: 101
+number_of_iterations: 5
+search anomalous dimension: false
+window_range: 0.25
 
-[2026-06-10 14:21:48] Initiating simulated annealing (main process).
-[2026-06-10 14:21:58] Initiating screening solver with the following parameters:
-dimension: 2
-s_factor: 1.8
-sigma_minima: 0.1
-sigma_maxima: 0.3
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.6
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
+[2026-07-08 19:55:08] Formatting and writting from filename output_files/eigenperturbations-long-range/tricritical.txt
 
-[2026-06-10 14:21:58] Initiating simulated annealing (main process).
-[2026-06-10 14:22:21] Initiating screening solver with the following parameters:
-dimension: 2
-s_factor: 1.9
-sigma_minima: 0.05
-sigma_maxima: 0.1
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.5
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
+[2026-07-08 19:55:08] Formatting and writting from filename output_files/eigenperturbations-long-range/tricritical.txt_trajectory
 
-[2026-06-10 14:22:21] Initiating simulated annealing (main process).
-[2026-06-10 14:23:12] Initiating screening solver with the following parameters:
-dimension: 2
-s_factor: 2
-sigma_minima: 0.05
-sigma_maxima: 0.1
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.4
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
+[2026-07-08 19:55:09] Formatting and writting from filename output_files/eigenperturbations-long-range/tricritical.txtauxiliary_result
 
-[2026-06-10 14:23:12] Initiating simulated annealing (main process).
-[2026-06-10 14:27:53] Initiating screening solver with the following parameters:
-dimension: 2
-s_factor: 1.75
-sigma_minima: 0.3
-sigma_maxima: 0.7
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.5
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
+[2026-07-08 19:55:40] Following grid search calculation in eigenvector solver, obtained the following parameter improvement for comparison: 
+sigma input: -0.730567
+sigma output: -0.730573
+anomalous dimension input: 0
+anomalous dimension output: 0
+asymptotic field: 58.022
+Proceeding with calculation.
 
-[2026-06-10 14:27:53] Initiating simulated annealing (main process).
-[2026-06-10 14:28:16] Initiating screening solver with the following parameters:
-dimension: 2
-s_factor: 1.8
-sigma_minima: 0.3
-sigma_maxima: 0.7
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.6
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
+[2026-07-08 19:55:40] Patching at index: 443 field: 3.21337 expected_shape: 39 actual_shape: 40.1757 delta: 1.17574
+WARNING: poor asymptote match (delta = 1.17574)
 
-[2026-06-10 14:28:16] Initiating simulated annealing (main process).
-[2026-06-10 14:28:21] Initiating screening solver with the following parameters:
-dimension: 2
-s_factor: 1.9
-sigma_minima: 0.1
-sigma_maxima: 0.3
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.5
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
+[2026-07-08 20:26:43] Formatting and writting from filename output_files/eigenperturbations-long-range/bicritical.txt
 
-[2026-06-10 14:28:21] Initiating simulated annealing (main process).
-[2026-06-10 14:29:55] Initiating screening solver with the following parameters:
-dimension: 2
-s_factor: 2
-sigma_minima: 0.1
-sigma_maxima: 0.3
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.4
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
+[2026-07-08 20:26:43] Formatting and writting from filename output_files/eigenperturbations-long-range/bicritical.txt_trajectory
 
-[2026-06-10 14:29:55] Initiating simulated annealing (main process).
-[2026-06-10 14:33:44] Formatting and writting from filename output_files/1d_annealing_pico_dimensions/s=1.75.txt
-
-[2026-06-10 14:33:45] Formatting and writting from filename output_files/1d_annealing_pico_dimensions/s=1.75.txtauxiliary_result
-
-[2026-06-10 14:34:21] Formatting and writting from filename output_files/1d_annealing_pico_dimensions/s=1.80.txt
-
-[2026-06-10 14:34:23] Formatting and writting from filename output_files/1d_annealing_pico_dimensions/s=1.80.txtauxiliary_result
-
-[2026-06-10 14:34:30] Initiating screening solver with the following parameters:
-dimension: 2
-s_factor: 1.9
-sigma_minima: 0.3
-sigma_maxima: 0.7
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.5
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
-
-[2026-06-10 14:34:30] Initiating simulated annealing (main process).
-[2026-06-10 14:35:53] Initiating screening solver with the following parameters:
-dimension: 2
-s_factor: 2
-sigma_minima: 0.3
-sigma_maxima: 0.7
-anomalous_dimension_minima: 0.15
-anomalous_dimension_maxima: 0.4
-temperature: 1
-cooling_rate: 0.995
-number_of_iterations: 50
-number_of_steps: 1200
-temperature_subprocess: 0.2
-cooling_rate_subprocess: 0.9995
-number_of_steps_subprocess: 12000
-number_of_steps_window_search: 2
-run_subprocess: 0
-run_window_search: 0
-
-[2026-06-10 14:35:53] Initiating simulated annealing (main process).
-[2026-06-10 14:38:59] Formatting and writting from filename output_files/1d_annealing_pico_dimensions/s=1.90.txt
-
-[2026-06-10 14:39:01] Formatting and writting from filename output_files/1d_annealing_pico_dimensions/s=1.90.txtauxiliary_result
-
-[2026-06-10 14:40:05] Formatting and writting from filename output_files/1d_annealing_pico_dimensions/s=2.00.txt
-
-[2026-06-10 14:40:08] Formatting and writting from filename output_files/1d_annealing_pico_dimensions/s=2.00.txtauxiliary_result
+[2026-07-08 20:26:44] Formatting and writting from filename output_files/eigenperturbations-long-range/bicritical.txtauxiliary_result
 

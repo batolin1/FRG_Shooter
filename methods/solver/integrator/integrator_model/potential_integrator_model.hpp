@@ -24,6 +24,7 @@ class Potential_Integrator_Model {
         std::array<double,2> state;
         double threshold;
         bool save_trajectory;
+        double latest_3derivative;
 
         /**
             @brief Method to get the trajectory, that is, the evolution of the potential
@@ -94,6 +95,7 @@ class Potential_Integrator_Model {
             trajectory.clear ();
             asymptotic_field = configuration.field_perturbation;
             threshold = configuration.field_threshold;
+            latest_3derivative = 0.0;
 
             const double factor = parameter.s_constant * parameter.dimension_factor;
 
@@ -133,6 +135,7 @@ class Potential_Integrator_Model {
             const double state_3derivative = 0.5 / field * (
                 term * denominator * denominator * prefactor - 3 * state [1]);
 
+            latest_3derivative = state_3derivative;
             state_derivative [0] = state [1];
             state_derivative [1] = state_3derivative;
         }
@@ -178,55 +181,25 @@ class Potential_Integrator_Model {
                 1 + state [0] + 2 * asymptotic_field * state [1]; 
 
             Potential_Integrator_Result_Element trajectory_element;
+
+
+            trajectory_element.potential_0prime =
+                trajectory.empty() ? 0.0 : 
+                    trajectory.back().potential_0prime + 0.5 * 
+                    (state[0] + trajectory.back ().potential_1prime) *
+                    (asymptotic_field - trajectory.back().field);
+
+
             trajectory_element.field = asymptotic_field;
             trajectory_element.potential_1prime = state [0];
             trajectory_element.potential_2prime = state [1];
+            trajectory_element.potential_3prime = latest_3derivative;
             trajectory_element.the_real_denominator = the_real_denominator;
 
-            const double integrant = state [0] * asymptotic_field;
 
-            // If it is the first element to append to trajectory, handle differently. 
-            trajectory_element.potential_0prime = trajectory.empty () ? 
-                integrant : trajectory.back ().potential_0prime + integrant;
             trajectory_element.denominator = the_real_denominator;
 
             trajectory.push_back (trajectory_element);
-        }
-
-        double calculate_anomalous_dimension () {
-
-            if (trajectory.empty ()) {
-                return -1.0;
-            }
-
-            // Get the minima of the potential first, by finding where potential_1prime flips sign. 
-            int minima_index = 0;
-            for (int i = 1; i < trajectory.size (); i++) {
-                if (trajectory[i].potential_1prime * trajectory[i-1].potential_1prime < 0) {
-                    minima_index = i;
-                    break;
-                }
-            }
-
-            if (minima_index == 0 || minima_index == trajectory.size ()) {
-                return -1.0;
-            }
-
-            const double rho = trajectory [minima_index].field;
-            const double u = trajectory [minima_index].potential_0prime;
-            const double up = trajectory [minima_index].potential_1prime;
-            const double upp = trajectory [minima_index].potential_2prime;
-            const double uppp = 
-                (trajectory [minima_index + 1].potential_2prime - 
-                    trajectory [minima_index - 1].potential_2prime) / 
-                (trajectory [minima_index + 1].field - 
-                    trajectory [minima_index - 1].field);
-
-
-            const double anomalous_dimension = 4 * rho * 
-                std::pow ((2 * rho * uppp + 3 * upp), 2.0) / std::pow ((1 + 2 * rho * u), 4.0);
-            return anomalous_dimension;
-
         }
 
         double get_threshold () {

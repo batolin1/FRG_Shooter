@@ -1,2 +1,0 @@
-// dimension, anomalous_dimension, s_factor, sigma_minima, sigma_maxima, sigma_steps
-3.0,0.0,2.0, -0.995, 0.995, 8000

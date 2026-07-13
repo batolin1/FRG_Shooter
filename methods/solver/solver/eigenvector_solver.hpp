@@ -135,11 +135,14 @@ class Eigenvector_Solver {
                 }
             }
 
-            // Next relax it and patch. 
+            // Next relax it and patch. We realize relaxation in two steps, to make sure the 
+            // asymptote attaches in the correct point.  
             trajectory = grid_relaxer::relax_trajectory
                 (trajectory, configuration.relaxation_grid_size);
             trajectory = helper_utilities::patch_asymptote 
                 (trajectory, param, configuration);
+            trajectory = grid_relaxer::relax_trajectory
+                (trajectory, configuration.relaxation_grid_size);
 
             // Actually reached the eigenvalue integrator. 
             std::vector<Result_Element> result;

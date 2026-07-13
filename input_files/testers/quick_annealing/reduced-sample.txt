@@ -1,0 +1,2 @@
+// dimension, s_factor, sigma_minima, sigma_maxima, eta_minima, eta_maxima, temperature, cooling_rate, number_of_iterations,number_of_steps, temperature_subprocess, cooling_rate_subprocess, number_of_steps_subprocess, number_of_steps_window_search, run_subprocess, run_window_search
+3.0, 2.00, -0.50, -0.08, 0.01, 0.25, 1, 0.995, 500, 120, 0.2, 0.9995, 12000, 2,false,false,true, 100, 1e-4,true

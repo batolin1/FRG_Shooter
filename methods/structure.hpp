@@ -2,6 +2,7 @@
 #define STRUCTURE_HPP
 
 #include <vector>
+#include <string>
 
 // #####################################################
 // Begin of problem solver parameters.
@@ -19,21 +20,7 @@ struct Eigenvector_Solver_Parameter {
     double eigenvalue_maxima;
     double eigenvalue_minima;
     int eigenvalue_steps;
-};
-
-/**
-    @brief Input parameters for the initial condition problem solver, i.e., user inputs.
-    @see Initial_Condition_Solver, Initial_Condition_Parameter_Parser
-*/
-struct Initial_Condition_Solver_Parameter  {
-    double dimension;
-    double anomalous_dimension;
-    double s_factor_minima;
-    double s_factor_maxima;
-    int s_factor_delta;
-    double sigma_minima;
-    double sigma_maxima;
-    int sigma_steps;
+    bool search_anomalous_dimension;
 };
 
 /**
@@ -47,8 +34,9 @@ struct Shooting_Solver_Parameter {
     double sigma_minima;
     double sigma_maxima;
     int sigma_steps;
+    int maximum_iterations;
+    double tolerance;
 };
-
 
 /**
     @brief Input parameters for the screening problem solver, i.e., user inputs.
@@ -72,6 +60,9 @@ struct Screening_Solver_Parameter {
     bool run_subprocess;
     bool run_window_search; 
     bool search_anomalous_dimension;
+    int number_of_recalculations;
+    double recalculation_tolerance;
+    bool recalculate;
 };
 
 /**
@@ -117,6 +108,7 @@ struct Potential_Integrator_Parameter {
     double anomalous_constant;
     double implied_s_factor; 
     double s_constant;
+    double N;
 };
 
 /**
@@ -128,9 +120,11 @@ struct Potential_Integrator_Result_Element {
     double potential_0prime;
     double potential_1prime;
     double potential_2prime;
+    double potential_3prime;
     double potential_0prime_shape;
     double potential_1prime_shape;
     double potential_2prime_shape;
+    double potential_3prime_shape;
     double denominator;
     double the_real_denominator;
 };
@@ -163,16 +157,6 @@ struct Eigenvector_Integrator_Parameter : Potential_Integrator_Parameter {
 struct Eigenvector_Solver_Result_Element {
     double eigenvalue;
     double asymptotic_eigenvector;
-};
-
-/**
-    @brief Result Element for the initial condition problem. 
-    @see Initial_Condition_Problem_Output_Element, Initial_Condition_Solver
-*/
-struct Initial_Condition_Solver_Result_Element {
-    double spike;
-    double s_factor;
-    double anomalous_dimension;
 };
 
 /**
@@ -222,21 +206,13 @@ struct Eigenvector_Solver_Output_Element {
 };
 
 /**
-    @brief The output from a initial condition problem solver calculation. 
-    @see Initial_Condition_Solver, Initial_Condition_Result_Formatter 
-*/
-struct Initial_Condition_Solver_Output_Element {
-    Initial_Condition_Solver_Parameter parameter;
-    std::vector<Initial_Condition_Solver_Result_Element> result;
-};
-
-/**
     @brief The output from a shooting problem solver calculation. 
     @see Shooting_Solver, Shooting_Result_Formatter 
 */
 struct Shooting_Solver_Output_Element {
     Shooting_Solver_Parameter parameter;
     std::vector<Shooting_Solver_Result_Element> result;
+    std::vector<Shooting_Solver_Result_Element> spikes;
 };
 
 /**
@@ -256,6 +232,7 @@ struct Screening_Solver_Output_Element {
 struct Grid_Search_Solver_Output_Element {
     Grid_Search_Solver_Parameter parameter;
     std::vector<Grid_Search_Solver_Result_Element> result;
+    std::vector<Grid_Search_Solver_Result_Element> spikes;
 };
 
 
@@ -286,6 +263,13 @@ struct Configuration {
     double absolute_tolerance;
     int window_size;
     double window_range; 
+    double damping;
+    bool save_subprocesses;
+    double grid_extension;
+    double gradient_threshold;
+    double value_percentile;
+    double lower_threshold;
+    double upper_threshold;
 };
 
 struct Instruction_Parameter {

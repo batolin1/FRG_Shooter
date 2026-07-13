@@ -102,6 +102,10 @@ class Eigenvector_Integrator_Model {
             @return    A double-value element corresponding to the terminal state. 
         */
         double get_result () {
+            // It seems we need to return rho_infty * nu' / nu - (d-y) / (d-si);
+            // const double baseline = (parameter.dimension - parameter.eigenvalue) / 
+            //     (parameter.dimension - parameter.implied_s_factor); 
+            // const double experimental = state [1] / state [0] * asymptotic_field;
             return state [0];
         }
 
@@ -136,7 +140,9 @@ class Eigenvector_Integrator_Model {
             // provided above biggest maximum, use asymptotic continuation.
             if (x > parameter.trajectory.at (parameter.trajectory.size () - 1).field) {
                 std::cout << "Triggered asymptotic continuatoin for x = " << x << std::endl;
-                std::cout << "Last trajectory element field: " << parameter.trajectory.at (parameter.trajectory.size () - 1).field << std::endl;
+                std::cout << "Last trajectory element field: " 
+                          << parameter.trajectory.at (parameter.trajectory.size () - 1).field 
+                          << std::endl;
                 x = parameter.trajectory.at (parameter.trajectory.size () - 1).field;
                 // return parameter_builder::get_asymtotic_continuation (x, derivative, parameter);
             }
