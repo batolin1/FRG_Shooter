@@ -52,6 +52,11 @@ namespace parameter_builder {
     }
 
 
+    /**
+        @brief Helper method to create a potential integrator parameter from a screening parameter. 
+        @param param    The parameter for the screening solver. 
+        @return         A potential integrator parameter. 
+    */
     inline Potential_Integrator_Parameter make_potential_integrator_parameter (
         const Screening_Solver_Parameter& param) {
         
@@ -63,6 +68,11 @@ namespace parameter_builder {
         return integrator_parameter;
     }
 
+    /**
+        @brief Helper method to create a potential integrator parameter from grid search parameter. 
+        @param param    The parameter for the grid search solver. 
+        @return         A potential integrator parameter. 
+    */
     inline Potential_Integrator_Parameter make_potential_integrator_parameter (
         const Grid_Search_Solver_Parameter& param) {
         
@@ -118,6 +128,13 @@ namespace parameter_builder {
         return integrator_parameter;
     }
 
+    /**
+        @brief Helper method to create a grid search solver parameter from an eigenvector solver 
+               parameter, given also configurations.
+        @param param     The parameter for the eigenvector solver.
+        @param config    The configurations.  
+        @return          The parameter for the grid search solver. 
+    */
     inline Grid_Search_Solver_Parameter make_grid_search_solver_parameter (
         const Eigenvector_Solver_Parameter& param, const Configuration& config) {
 
@@ -166,7 +183,15 @@ namespace parameter_builder {
         return grid_search_parameter;
     }
 
-
+    /**
+        @brief Helper method to create a grid search solver parameter from a screening solver 
+               parameter, given also configurations and parameters.
+        @param param                  The parameter for the screening solver.
+        @param sigma                  The current value for sigma. 
+        @param anomalous_dimension    The current value for the anomalous dimension. 
+        @param config                 The configurations.  
+        @return                       The parameter for the grid search solver. 
+    */
     inline Grid_Search_Solver_Parameter build_grid_search_solver_parameter (
         const Screening_Solver_Parameter& param, const double sigma, 
         const double anomalous_dimension, const Configuration& config) {
@@ -199,7 +224,8 @@ namespace parameter_builder {
         } 
 
     /**
-        @brief Helper structure to allocate points where the potential U'(rho) = 0. 
+        @brief Helper structure to allocate points where the potential U'(rho) = 0, that is, where
+               crossings occur and respectively fixed points emerge. 
     */
     struct CrossingPoint {
         double field;
@@ -231,46 +257,46 @@ namespace parameter_builder {
         // Consider the origin as a candidate (symmetric phase / unbroken minimum).
         
         CrossingPoint cp;
-        cp.field            = trajectory.front().field;
-        cp.potential_0prime = trajectory.front().potential_0prime;
-        cp.potential_1prime = trajectory.front().potential_1prime;
-        cp.potential_2prime = trajectory.front().potential_2prime;
-        cp.potential_3prime = trajectory.front().potential_3prime;
-        cp.is_minimum       = (trajectory.front().potential_2prime > 0.0);
+        cp.field = trajectory.front ().field;
+        cp.potential_0prime = trajectory.front ().potential_0prime;
+        cp.potential_1prime = trajectory.front ().potential_1prime;
+        cp.potential_2prime = trajectory.front ().potential_2prime;
+        cp.potential_3prime = trajectory.front ().potential_3prime;
+        cp.is_minimum = (trajectory.front ().potential_2prime > 0.0);
         cp.index = -1;
-        crossing_points.push_back(cp);
+        crossing_points.push_back (cp);
 
         // All the other candidates
-        for (int i = 1; i < trajectory.size(); i++) {
+        for (int i = 1; i < trajectory.size (); i++) {
             const bool sign_flip = 
-                trajectory[i].potential_1prime * trajectory[i-1].potential_1prime < 0;
+                trajectory [i].potential_1prime * trajectory [i-1].potential_1prime < 0;
             if (!sign_flip) continue;
 
             // Linear interpolation to find more precise zero location.
-            const double f0 = trajectory[i-1].field;
-            const double f1 = trajectory[i  ].field;
-            const double u0 = trajectory[i-1].potential_1prime;
-            const double u1 = trajectory[i  ].potential_1prime;
+            const double f0 = trajectory [i-1].field;
+            const double f1 = trajectory [i].field;
+            const double u0 = trajectory [i-1].potential_1prime;
+            const double u1 = trajectory [i].potential_1prime;
             const double t  = -u0 / (u1 - u0); // fraction in [0,1]
             const double field_zero = f0 + t * (f1 - f0);
 
             // Interpolate all quantities at the zero.
-            const double p0 = trajectory[i-1].potential_0prime + 
-                t * (trajectory[i].potential_0prime - trajectory[i-1].potential_0prime);
-            const double p2 = trajectory[i-1].potential_2prime + 
-                t * (trajectory[i].potential_2prime - trajectory[i-1].potential_2prime);
-            const double p3 = trajectory[i-1].potential_3prime + 
-                t * (trajectory[i].potential_3prime - trajectory[i-1].potential_3prime);
+            const double p0 = trajectory [i-1].potential_0prime + 
+                t * (trajectory [i].potential_0prime - trajectory [i-1].potential_0prime);
+            const double p2 = trajectory [i-1].potential_2prime + 
+                t * (trajectory [i].potential_2prime - trajectory [i-1].potential_2prime);
+            const double p3 = trajectory [i-1].potential_3prime + 
+                t * (trajectory [i].potential_3prime - trajectory [i-1].potential_3prime);
 
             CrossingPoint cp;
-            cp.field            = field_zero;
+            cp.field = field_zero;
             cp.potential_0prime = p0;
             cp.potential_1prime = 0.0;
             cp.potential_2prime = p2;
             cp.potential_3prime = p3;
-            cp.is_minimum       = (p2 > 0.0);
+            cp.is_minimum = (p2 > 0.0);
             cp.index = i;
-            crossing_points.push_back(cp);
+            crossing_points.push_back (cp);
         }
 
         return crossing_points;
@@ -287,19 +313,20 @@ namespace parameter_builder {
         const Potential_Integrator_Parameter& parameter, 
         Potential_Integrator_Model& model) {
 
-        const std::vector<Potential_Integrator_Result_Element>& trajectory = model.get_trajectory();
+        const std::vector<Potential_Integrator_Result_Element>& trajectory = 
+            model.get_trajectory ();
 
         const std::vector<CrossingPoint>& crossing_points = 
             find_crossing_points (trajectory);
 
-        if (crossing_points.empty()) {
+        if (crossing_points.empty ()) {
             return parameter.anomalous_dimension;
         }
 
-        // Among all minima (V'' > 0), find the one with lowest potential value V.
-        // This is the global minimum — the physically meaningful evaluation point for eta.
+        // Among all minima (U'' > 0), find the one with lowest potential value U.
+        // This is the global minimum - the physically meaningful evaluation point for eta.
         const CrossingPoint* best = nullptr;
-        double lowest_potential   = std::numeric_limits<double>::max();
+        double lowest_potential = std::numeric_limits<double>::max ();
 
         for (const CrossingPoint& cp : crossing_points) {
             if (!cp.is_minimum) continue;
@@ -309,9 +336,9 @@ namespace parameter_builder {
             }
         }
 
-        // Fallback: if no proper minimum found, use the point with smallest |V'|.
+        // Fallback: if no proper minimum found, use the point with smallest U'.
         if (best == nullptr) {
-            double smallest_uprime = std::numeric_limits<double>::max();
+            double smallest_uprime = std::numeric_limits<double>::max ();
             for (const CrossingPoint& cp : crossing_points) {
                 if (std::abs(cp.potential_1prime) < smallest_uprime) {
                     smallest_uprime = std::abs(cp.potential_1prime);
@@ -320,38 +347,19 @@ namespace parameter_builder {
             }
         }
 
-        // Still nothing — return unchanged.
+        // Still nothing? return unchanged.
         if (best == nullptr) {
             return parameter.anomalous_dimension;
         }
 
         const double rho0 = best->field;
         const double upp  = best->potential_2prime;
-        const double uppp = best->potential_3prime;
-
-        const double num = 3.0 * upp + 2.0 * rho0 * uppp;
 
         const double mod_num = 3.0 + 6.0 * rho0 * upp + 2.0 * std::pow (rho0 * upp, 2.0);
-
-
-        // Eq. (2) from Codello / eq. (48) from Defenu et al.:
-        // eta = 4 * rho0 * (V'')^2 / (1 + 2*rho0*V'')^2
         const double denom = 1.0 + 2.0 * rho0 * upp;
-        if (std::abs(denom) < 1e-10) {
-            return parameter.anomalous_dimension;
-        }
 
-        // const double anomalous_dimension = 
-        //     4.0 * rho0 * upp * upp / std::pow (denom, 2.0);
-
-
-        // THis one is a LEGITIMATE solution. 
         const double anomalous_dimension = 2.0 * rho0 * upp * upp * mod_num /
             denom / denom / (1.0 + rho0 * upp) / (1.0 + rho0 * upp);
-
-
-
-        // const double anomalous_dimension = 2.0 * rho0 * num * num / std::pow (denom, 4.0);
         
         // Simple safe-guard. -> calculated anomalous dimension too big or too small?
         // In this case don't even bother recomputing. This is hard-coded. 

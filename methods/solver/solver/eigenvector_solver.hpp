@@ -53,6 +53,11 @@ class Eigenvector_Solver {
             output.clear ();
         }
 
+        /**
+            @brief This method logs to the logger information, namely the particular parameters
+                   that are being used as input when this method is called. 
+            @param param    The parameter object used as input. 
+        */
         void write_log (const Parameter& param) {
             std::ostringstream oss;
             oss << "Initiating eigenvector solver with the following parameters:" << "\n"
@@ -66,6 +71,15 @@ class Eigenvector_Solver {
             Logger::instance ().log (oss.str ());
         }
 
+        /**
+            @brief This method logs to the logger information, namely the parameters that are being
+                   used as input for the *subprocess* of grid-search associated with this solver.
+                   
+            @param param                  The parameter object used
+            @param asymptotic_field       The asymptotic field. 
+            @param sigma                  The parameter sigma. 
+            @param anomalous_dimension    The anomalous dimension. 
+        */
         void write_grid_search_log (const Parameter& param, const double asymptotic_field, 
             const double sigma, const double anomalous_dimension) {
                 std::ostringstream oss;

@@ -57,6 +57,15 @@ class Screening_Solver {
             output.clear ();
         }
 
+        /**
+            @brief A method to execute the screening method for a single step only. 
+            @param param                          The simulation parameters.
+            @param temperature                    The temperature for this step.
+            @param current_sigma                  The current best value for sigma. 
+            @param current_anomalous_dimension    The current best value for anomalous dimension. 
+            @param asymptotic_field               The current best value for the asymptotic field.
+            @param cooling_rate                   The cooling rate for this step. 
+        */
         void execute_for_single_step (const Parameter& param, double& temperature, 
             double& current_sigma, double& current_anomalous_dimension, 
             double& asymptotic_field, const double cooling_rate) {
@@ -115,6 +124,15 @@ class Screening_Solver {
                 temperature *= cooling_rate;
         }
 
+        /**
+            @brief Executes the simulated annealing algorithm for a single iteration only. 
+            @param param                          The simulation parameters. 
+            @param iteration                      The iteration number. 
+            @param number_of_steps                The maximum number of steps for this iteration. 
+            @param start_temperature              The start value for the temperature.
+            @param current_sigma                  The best estimate for sigma. 
+            @param current_anomalous_dimension    The current best value for anomalous dimension.  
+        */
         std::vector<double> execute_for_single_iteration (const Parameter& param, 
             const int iteration, const int number_of_steps,
             const double start_temperature, const double cooling_rate, 
@@ -171,6 +189,10 @@ class Screening_Solver {
             return best_estimates;
         }
 
+        /**
+            @brief A simple method to log the parameters used in this solver to the logger. 
+            @param param    The parameters. 
+        */
         void write_log (const Parameter& param) {
             std::ostringstream oss;
             const std::string run_subprocess = param.run_subprocess ? "true" : "false";
@@ -270,6 +292,7 @@ class Screening_Solver {
                 }
             }
 
+            // Only if required, run in addition a window search. 
             if (param.run_window_search) {
                 Logger::instance ().log ("Initiating window search.");
                 // We run the window search using the grid search solver. 

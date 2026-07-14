@@ -32,7 +32,8 @@ struct Shooting_Result_Formatter  {
 };
 
 /**
-    @brief A formatter for output elements related to the shooting problem solver.
+    @brief A formatter for output elements of the spikes in the shooting problem (which we here 
+           denote as the "best" results).
     @see Formatter_Concept
 */
 struct Shooting_Best_Result_Formatter  {
@@ -79,6 +80,32 @@ struct Screening_Result_Formatter  {
     }
 };
 
+
+/**
+    @brief A formatter for output elements related to the screening problem solver, namely for the
+           spikes or the "best results" found with this method.
+    @see Formatter_Concept
+*/
+struct Screening_Best_Result_Formatter  {
+
+    static std::string format (const Screening_Solver_Output_Element& output_element) {
+
+        std::ostringstream oss;
+
+        for (const Screening_Solver_Result_Element& r : output_element.best_result) {
+            oss << output_element.parameter.dimension << ","
+            << output_element.parameter.s_factor << ","
+            << r.anomalous_dimension << ","
+            << r.sigma << ","
+            << r.asymptotic_field
+            << "\n";
+        }
+
+        return oss.str ();
+    }
+};
+
+
 /**
     @brief A formatter for output elements related to the grid search problem solver.
     @see Formatter_Concept
@@ -103,7 +130,8 @@ struct Grid_Search_Result_Formatter  {
 };
 
 /**
-    @brief A formatter for output elements related to the grid search problem solver.
+    @brief A formatter for output elements related to the grid search problem solver, namely for the
+           spikes or the "best results" found with this method.
     @see Formatter_Concept
 */
 struct Grid_Search_Best_Result_Formatter  {
@@ -113,29 +141,6 @@ struct Grid_Search_Best_Result_Formatter  {
         std::ostringstream oss;
 
         for (const Grid_Search_Solver_Result_Element& r : output_element.spikes) {
-            oss << output_element.parameter.dimension << ","
-            << output_element.parameter.s_factor << ","
-            << r.anomalous_dimension << ","
-            << r.sigma << ","
-            << r.asymptotic_field
-            << "\n";
-        }
-
-        return oss.str ();
-    }
-};
-
-/**
-    @brief A formatter for output elements related to the screening problem solver.
-    @see Formatter_Concept
-*/
-struct Screening_Best_Result_Formatter  {
-
-    static std::string format (const Screening_Solver_Output_Element& output_element) {
-
-        std::ostringstream oss;
-
-        for (const Screening_Solver_Result_Element& r : output_element.best_result) {
             oss << output_element.parameter.dimension << ","
             << output_element.parameter.s_factor << ","
             << r.anomalous_dimension << ","
@@ -173,7 +178,6 @@ struct Eigenvector_Result_Formatter  {
         return oss.str ();
     }
 };
-
 
 
 /**

@@ -27,6 +27,7 @@ namespace result_writer {
     requires Formatter_Concept<Formatter, Output_Element>
     void write (const std::string& filename, const std::vector<Output_Element>& output) {
 
+        // Logs to logger that this action is taking place. 
         std::ostringstream oss;
         oss << "Formatting and writting from filename " << filename << "\n";
         Logger::instance().log (oss.str()); 

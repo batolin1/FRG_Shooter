@@ -65,11 +65,6 @@ namespace integrator {
         while (model.asymptotic_field < model.get_threshold () && step < max_steps) {
 
             step++;
-            
-            // if ((int) (step * 1000) % max_steps == 0) {
-            //     std::cout << step << " out of " << max_steps << std::endl;
-            //     std::cout << model.asymptotic_field << " of max " << model.get_threshold () << std::endl;
-            // }
 
             if (model.termination_event ()) break;
 
@@ -91,17 +86,27 @@ namespace integrator {
             // Reduces timestep on failure. 
             else {
                 integration_time_step *= 0.5;
+                // Too small timestep? - Stop. 
                 if (integration_time_step < 1e-8) {
-                    // std::cout << "Reached few too tiny steps!" << std::endl;
-                    // std::cout << "Field" << model.asymptotic_field << std::endl;
-                    // std::cout << "Potential" << model.state[0] << std::endl;
-                    // std::cout << "Primed Potential" << model.state[1] << std::endl;
                     return; 
                 }
             }
         }
     }
 
+    /**
+        @brief An integrator model to realize integrations, particularly when the anomalous 
+               dimension is meant to be re-calculated adaptitatively. Note that this method 
+               integrates only potentials, but not eigenvectors. 
+        @param config                The configurations for this integrator. 
+        @param param                 The parameters for this integration. 
+        @param model                 The model to be integrated. 
+        @param maximum_iterations    The maximum number of times the anomalous dimension will be 
+                                     adaptitatively re-calculated. 
+        @param tolerance             The tolerance below which the anomalous dimension is treated 
+                                     as if it had converged. 
+
+    */
     void integrate_model (
         const Configuration& config, 
         Potential_Integrator_Parameter& param, 
@@ -134,9 +139,6 @@ namespace integrator {
             }
             old_anomalous_dimension = param.anomalous_dimension;
         }
-        // if (counter >= maximum_iterations) {
-        //     std::cout << "Triggered maximum iterations at sigma = " << param.sigma << std::endl;
-        // }
     }
 
 };

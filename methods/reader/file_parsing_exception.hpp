@@ -14,6 +14,7 @@ class File_Parsing_Exception : public std::exception {
         std::string message;
 
     public:
+    
         explicit File_Parsing_Exception (const std::string& msg) : message (msg) {}
 
         const char* what () const noexcept override {

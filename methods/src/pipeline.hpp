@@ -36,7 +36,7 @@ struct Pipeline {
         @param output_file   The string to the directory containing the output file. 
         @param config        The (numerical) configurations for the simulation. 
     */
-    static int run(
+    static int run (
         const std::string& input_file, 
         const std::string& output_file,
         const Configuration& config) {

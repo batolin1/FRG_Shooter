@@ -51,6 +51,20 @@ class Grid_Search_Solver {
             output.clear ();
         }
 
+        /**
+            @brief this method runs the grid search for a single iteration only. 
+
+            @param param                         The parameters used as input for the grid search. 
+            @param sigma_minima                  The window minima for this iteration for sigma. 
+            @param sigma_maxima                  The window maxima for this iteration for sigma.
+            @param anomalous_dimension_minima    The window minima for this iteration for the 
+                                                 anomalous dimension. 
+            @param anomalous_dimension_maxima    The window maxima for this iteration for the 
+                                                 anomalous dimension. 
+            @return                              The best estimate for the run, stored as a vector
+                                                 of doubles corresponding to sigma, anomalous 
+                                                 dimension, and asymptotic field. 
+        */
         std::vector<double> run_for_single_iteration (
             const Parameter& param, const double sigma_minima, const double sigma_maxima, 
             double& anomalous_dimension_minima, double& anomalous_dimension_maxima) {
@@ -121,6 +135,10 @@ class Grid_Search_Solver {
 
         }
 
+        /**
+            @brief This method logs to the logger, the parameters used for this particular solver.
+            @param param    The parameter object.
+        */
         void write_log (const Parameter& param) {
             std::ostringstream oss;
             const std::string search_anomalous_dimension = 

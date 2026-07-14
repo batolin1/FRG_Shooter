@@ -26,21 +26,21 @@ namespace helper_utilities {
 
         std::vector<Trajectory_Element> patched_trajectory = trajectory;
 
-        const int traj_size = static_cast<int>(patched_trajectory.size());
+        const int traj_size = static_cast<int> (patched_trajectory.size ());
 
         // Compute shapes using central differences. 
         for (int i = 1; i < traj_size - 1; i++) {
-            const double up_next = patched_trajectory[i+1].potential_1prime;
-            const double up_prev = patched_trajectory[i-1].potential_1prime;
-            const double f_next  = patched_trajectory[i+1].field;
-            const double f_prev  = patched_trajectory[i-1].field;
-            const double up      = patched_trajectory[i].potential_1prime;
-            if (std::abs(up) > 1e-10) {
+            const double up_next = patched_trajectory [i+1].potential_1prime;
+            const double up_prev = patched_trajectory [i-1].potential_1prime;
+            const double f_next  = patched_trajectory [i+1].field;
+            const double f_prev  = patched_trajectory [i-1].field;
+            const double up      = patched_trajectory [i].potential_1prime;
+            if (std::abs (up) > 1e-10) {
                 const double dy = (up_next - up_prev) / (f_next - f_prev);
-                patched_trajectory[i].potential_1prime_shape =
-                    dy * patched_trajectory[i].field / up;
+                patched_trajectory [i].potential_1prime_shape =
+                    dy * patched_trajectory [i].field / up;
             } else {
-                patched_trajectory[i].potential_1prime_shape = 0.0;
+                patched_trajectory [i].potential_1prime_shape = 0.0;
             }
         }
 
@@ -48,22 +48,22 @@ namespace helper_utilities {
         const std::vector<parameter_builder::CrossingPoint>& crossing_points = 
             parameter_builder::find_crossing_points (patched_trajectory);
 
-        // Trajectory empty? - throws a warning.
+        // Trajectory empty? - logs a warning
         if (crossing_points.empty ()) {
             std::ostringstream oss;
             oss << "Warning: trajectory with s_factor = " << param.s_factor << " anomalous "
                 << "dimension= " << param.anomalous_dimension << " dimension= " << param.dimension 
                 << "could not find minimas or maximas for this trajectory.";
-            Logger::instance(). log (oss.str ());
+            Logger::instance (). log (oss.str ());
         }
 
-        // Trajectory has only one element and is a maxima? Throw a warning. 
+        // Trajectory has only one element and is a maxima? Logs a warning. 
         if (crossing_points.size () == 1 && crossing_points.back ().potential_2prime < 0) {
             std::ostringstream oss;
             oss << "Warning: trajectory with s_factor = " << param.s_factor << " anomalous "
                 << "dimension= " << param.anomalous_dimension << " dimension= " << param.dimension 
                 << "could not find a miima.";
-            Logger::instance(). log (oss.str ());
+            Logger::instance (). log (oss.str ());
         }
 
         // Always pick the last minima to start patching from. 
@@ -124,7 +124,7 @@ namespace helper_utilities {
 
         std::ostringstream oss;
 
-        // Safety warning
+        // Safety warning - Details the quality of the patching at asymptote. 
         const double match_quality = std::abs(
             patched_trajectory [patch_idx].potential_1prime_shape - expected_shape);
         oss << "Patching at index: " << patch_idx
@@ -136,13 +136,14 @@ namespace helper_utilities {
             oss << "WARNING: poor asymptote match (delta = "
                 << match_quality << ")" << "\n";
         }
+        // Logs.
         Logger::instance ().log (oss.str ());
 
         // Now we actually build the power-law tail for U', U''. Intentioanlly leave U = 0.0 since 
         // This is rebuilt at the trajectory relaxation step anyway. 
         const double rho_patch = patched_trajectory [patch_idx].field;
         const double uprime_patch = patched_trajectory [patch_idx].potential_1prime;
-        const double C = uprime_patch / std::pow(rho_patch, expected_shape);
+        const double C = uprime_patch / std::pow (rho_patch, expected_shape);
 
         const double rho_ext_limit = patched_trajectory[zero_cross_idx].field * 3.0;
         const double step = patched_trajectory[1].field - patched_trajectory [0].field;
@@ -162,7 +163,7 @@ namespace helper_utilities {
             patched_tail.push_back (e);
         }
 
-        // Join the tail to the original trajecotry. 
+        // Join the tail to the original trajectory. 
         patched_trajectory.resize (patch_idx);
         patched_trajectory.insert (
             patched_trajectory.end (), patched_tail.begin (), patched_tail.end ());
@@ -183,81 +184,84 @@ namespace helper_utilities {
     }
 
     /**
-        Helper method to find the spikes, that is, the potential points 
-        where a phase transition occurs. 
+        Helper method to find the spikes, that is, the points where potentially a transition occurs. 
         @param x_values    The x_values for the dataset. 
         @param y_values    The y_values for the dataset.
         @return            The lits of (potential) spikes (as x-values).
     */
     template<typename Result_Element> 
-    std::vector<int> find_spike (const Configuration& config, 
-        const std::vector<Result_Element>& result) {
-        const int n = result.size();
+    std::vector<int> find_spike (
+        const Configuration& config, const std::vector<Result_Element>& result) {
+
+        const int n = result.size ();
         if (n < 2) {
-            throw std::invalid_argument("Invalid input sizes");
+            throw std::invalid_argument ("Invalid input sizes");
         }
 
-        // 1) Simultaneous-sort by sigma (x), keeping track of original indices.
-        std::vector<int> indices(n);
-        for (int i = 0; i < n; ++i) indices[i] = i;
-        std::sort(indices.begin(), indices.end(),
-            [&](int a, int b) { return result[a].sigma < result[b].sigma; });
+        // Simultaneous-sort by sigma (x), keeping track of original indices.
+        std::vector<int> indices (n);
+        for (int i = 0; i < n; ++i) indices [i] = i;
+        std::sort(indices.begin (), indices.end (),
+            [&](int a, int b) { return result [a].sigma < result [b].sigma; });
         std::vector<double> x(n), y(n);
         for (int i = 0; i < n; ++i) {
-            x[i] = result[indices[i]].sigma;
-            y[i] = result[indices[i]].asymptotic_field;
+            x [i] = result [indices [i]].sigma;
+            y [i] = result [indices [i]].asymptotic_field;
         }
 
+        // Finds gradients.
         std::vector<double> gradient(n);
-        gradient[0] = (y[1] - y[0]) / (x[1] - x[0]);
+        gradient [0] = (y [1] - y [0]) / (x [1] - x [0]);
         for (int i = 1; i < n - 1; ++i) {
-            const double h0 = x[i] - x[i-1];
-            const double h1 = x[i+1] - x[i];
-            gradient[i] = (h0*h0*y[i+1] + (h1*h1 - h0*h0)*y[i] - h1*h1*y[i-1])
-                        / (h0 * h1 * (h0 + h1));
+            const double h0 = x [i] - x [i-1];
+            const double h1 = x [i+1] - x [i];
+            gradient [i] = 
+                (h0 * h0 * y [i+1] + (h1*h1 - h0*h0) * y [i] - h1 * h1 * y [i-1]) / 
+                (h0 * h1 * (h0 + h1));
         }
-        gradient[n-1] = (y[n-1] - y[n-2]) / (x[n-1] - x[n-2]);
+        gradient [n-1] = (y [n-1] - y [n-2]) / (x [n-1] - x [n-2]);
 
-        // 3) Percentile threshold (linear interpolation, same as np.percentile default).
+        // Percentile threshold (linear interpolation).
         std::vector<double> grad_copy = gradient;
-        std::sort(grad_copy.begin(), grad_copy.end());
+        std::sort(grad_copy.begin (), grad_copy.end ());
         const double pos = (config.value_percentile / 100.0) * (n - 1);
-        const int lower = static_cast<int>(std::floor(pos));
-        const int upper = static_cast<int>(std::ceil(pos));
+        const int lower = static_cast<int> (std::floor (pos));
+        const int upper = static_cast<int> (std::ceil (pos));
         const double weight = pos - lower;
         const double value_threshold =
-            grad_copy[lower] * (1.0 - weight) + grad_copy[upper] * weight;
+            grad_copy [lower] * (1.0 - weight) + grad_copy [upper] * weight;
 
-        // 4) Find spikes — full range, with sign-based index shift like Python.
+        // Find spikes — full range, with sign-based index shift.
+
         std::vector<int> spikes;
         bool in_spike = false;
         for (int i = 0; i < n; ++i) {
             bool condition =
-                (std::abs(gradient[i]) > config.gradient_threshold); //&&
+                (std::abs (gradient [i]) > config.gradient_threshold); //&&
                 //(std::abs(gradient[i]) > value_threshold) &&
                 //(y[i] > value_threshold);
 
             if (condition && !in_spike &&
-                std::abs(x[i]) < config.upper_threshold &&
-                std::abs(x[i]) > config.lower_threshold) {
+                std::abs (x [i]) < config.upper_threshold &&
+                std::abs (x [i]) > config.lower_threshold) {
 
                 int spike_pos = i; // position in sorted x/y
-                if (x[i] < 0) {
-                    if (i + 1 < n) {
-                        spike_pos = i + 1;
+                if (x [i] < 0) {
+                    if (i+1 < n) {
+                        spike_pos = i+1;
                     } else {
-                        throw std::out_of_range(
+                        throw std::out_of_range (
                             "Spike detected at last point with negative x; "
                             "no i+1 to shift to (matches Python's IndexError case)");
                     }
                 }
-                spikes.push_back(indices[spike_pos]);  // map back to original index
+                spikes.push_back (indices [spike_pos]);  // map back to original index
                 in_spike = true;
+
             } else if (!condition) {
                 in_spike = false;
             }
         }
-
         return spikes;
     }
 

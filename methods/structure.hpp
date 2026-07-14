@@ -272,6 +272,9 @@ struct Configuration {
     double upper_threshold;
 };
 
+/**
+    @brief Instruction to represent instruction parameters for instructions provided to platform.
+*/
 struct Instruction_Parameter {
     std::string id;
     std::string input_filename;

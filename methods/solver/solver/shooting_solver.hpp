@@ -50,6 +50,10 @@ class Shooting_Solver {
             output.clear ();
         }
 
+        /**
+            @brief A simple logger method to log the solver parameters to the logger. 
+            @param param    The parameters.
+        */
         void write_log (const Parameter& param) {
             std::ostringstream oss;
             oss << "Initiating shooting solver with the following parameters:\n" 

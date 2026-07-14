@@ -33,10 +33,12 @@ namespace configuration_reader {
         // Reads the first line only. 
         std::string line;
         std::getline (configuration_file, line);
+
         // If first line is comment, skip to second line actually. 
         if (line.front () == '/') {
             std::getline (configuration_file, line);
         }
+
         std::stringstream ss (line);
         std::string value;
         std::vector<std::string> token;
@@ -73,6 +75,7 @@ namespace configuration_reader {
             configuration.value_percentile = std::stod (token [16]);
             configuration.lower_threshold = std::stod (token [17]);
             configuration.upper_threshold = std::stod (token [18]);
+            
         // Throws error if fails.
         } catch (const std::exception& e) {
             throw File_Parsing_Exception (

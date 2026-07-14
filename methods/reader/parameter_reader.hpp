@@ -22,7 +22,7 @@ namespace parameter_reader {
 
         @tparam Parameter    The template for parameters. 
         @tparam Parser       The template for a parser. 
-        @param  filename     The filename to access and read the data from 
+        @param  filename     The filename to access and read the data from.
         @return              A vector of parameters, where each parameter correspond
                              to a single line in the input file. 
     */
@@ -30,6 +30,7 @@ namespace parameter_reader {
     requires Parser_Concept<Parser, Parameter>
     static std::vector<Parameter> read (const std::string& filename) {
 
+        // Logs the action to logger.
         std::ostringstream oss;
         oss << "Reading and parsing from filename " << filename << "\n";
         Logger::instance().log (oss.str()); 
@@ -63,6 +64,7 @@ namespace parameter_reader {
 
             if (Parser::parse_token (token, param)) {
                 result.push_back (param);
+                
             // Failed to parse token? Throw warning! 
             } else {
                 std::ostringstream oss;

@@ -16,7 +16,8 @@
 struct Shooting_Parameter_Parser {
 
     static bool parse_token (
-        const std::vector<std::string>& token, Shooting_Solver_Parameter& param) {
+        const std::vector<std::string>& token, 
+        Shooting_Solver_Parameter& param) {
             
         // Ir row given in incorrect format, igore row and warns user.
         if (token.size () != 8) {
@@ -32,9 +33,12 @@ struct Shooting_Parameter_Parser {
             param.sigma_steps = std::stoi (token [5]);
             param.maximum_iterations = std::stoi (token[6]);
             param.tolerance = std::stod (token[7]);
+
         } catch (...) {
             return false;
+
         }
+
         return true;
     }
 };
@@ -47,7 +51,8 @@ struct Shooting_Parameter_Parser {
 struct Screening_Parameter_Parser {
 
     static bool parse_token (
-        const std::vector<std::string>& token, Screening_Solver_Parameter& param) {
+        const std::vector<std::string>& token, 
+        Screening_Solver_Parameter& param) {
             
         // Ir row given in incorrect format, igore row and warns user.
         if (token.size () != 20) {
@@ -75,9 +80,12 @@ struct Screening_Parameter_Parser {
             param.number_of_recalculations = std::stoi (token [17]);
             param.recalculation_tolerance = std::stod (token [18]);
             param.recalculate = token [19] == "true" ? true : false;
+
         } catch (...) {
             return false;
+
         }
+
         return true;
     }
 };
@@ -90,7 +98,8 @@ struct Screening_Parameter_Parser {
 struct Grid_Search_Parameter_Parser {
 
     static bool parse_token (
-        const std::vector<std::string>& token, Grid_Search_Solver_Parameter& param) {
+        const std::vector<std::string>& token, 
+        Grid_Search_Solver_Parameter& param) {
             
         // Ir row given in incorrect format, igore row and warns user.
         if (token.size () != 11) {
@@ -109,9 +118,12 @@ struct Grid_Search_Parameter_Parser {
             param.number_of_iterations = std::stoi (token [8]);
             param.window_range = std::stod (token [9]);
             param.search_anomalous_dimension = token [10] == "true" ? true : false;
+
         } catch (...) {
             return false;
+
         }
+
         return true;
     }
 };
@@ -124,7 +136,8 @@ struct Grid_Search_Parameter_Parser {
 struct Eigenvector_Parameter_Parser {
 
     static bool parse_token (
-        const std::vector<std::string>& token, Eigenvector_Solver_Parameter& param) {
+        const std::vector<std::string>& token, 
+        Eigenvector_Solver_Parameter& param) {
             
         // Ir row given in incorrect format, igore row.
         if (token.size () != 8) {
@@ -140,19 +153,25 @@ struct Eigenvector_Parameter_Parser {
             param.eigenvalue_maxima = std::stod (token [5]);
             param.eigenvalue_steps = std::stoi (token [6]);
             param.search_anomalous_dimension = token [7] == "true" ? true : false;
+
         } catch (...) {
             return false;
+
         }
 
         return true;
     }
 };
 
+/**
+    @brief A parser to parse instruction parameters.
+    @see Parser_Concept
+*/
 struct Instruction_Parameter_Parser {
 
     static bool parse_token (
-
-        const std::vector<std::string>& token, Instruction_Parameter& param) {
+        const std::vector<std::string>& token, 
+        Instruction_Parameter& param) {
             
         // Ir row given in incorrect format, igore row.
         if (token.size () != 4) {
@@ -164,9 +183,13 @@ struct Instruction_Parameter_Parser {
             param.output_filename = token [1];
             param.configuration_filename = token [2];
             param.solver_name = token [3];
+            // We serialize those instructions. For now this is useless but may be needed in case 
+            // this software gets scaled. 
             param.id = serialization::generate_uuid ();
+
         } catch (...) {
             return false;
+
         }
 
         return true;

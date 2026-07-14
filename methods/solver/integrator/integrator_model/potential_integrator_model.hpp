@@ -39,19 +39,19 @@ class Potential_Integrator_Model {
             }
 
             double potential_0prime = 0;
-            trajectory[0].potential_0prime = 0;
+            trajectory [0].potential_0prime = 0;
             for (int i = 1; i < trajectory.size (); i++) {
                 potential_0prime +=
-                    (trajectory[i].field - trajectory[i - 1].field) *
-                    (trajectory[i].potential_1prime + trajectory[i - 1].potential_1prime) / 2;
-                trajectory[i].potential_0prime = potential_0prime;
+                    (trajectory [i].field - trajectory [i-1].field) *
+                    (trajectory [i].potential_1prime + trajectory[i-1].potential_1prime) / 2;
+                trajectory [i].potential_0prime = potential_0prime;
             }
 
             for (int i = 0; i < trajectory.size (); i++) {
-                const double field = trajectory[i].field;
-                const double potential_0prime_value = trajectory[i].potential_0prime;
-                const double potential_1prime_value = trajectory[i].potential_1prime;
-                const double potential_2prime_value = trajectory[i].potential_2prime;
+                const double field = trajectory [i].field;
+                const double potential_0prime_value = trajectory [i].potential_0prime;
+                const double potential_1prime_value = trajectory [i].potential_1prime;
+                const double potential_2prime_value = trajectory [i].potential_2prime;
 
                 trajectory[i].denominator =
                     1.0 + potential_1prime_value + 2.0 * field * potential_2prime_value;
@@ -64,20 +64,21 @@ class Potential_Integrator_Model {
                     const double min_exponent = -10.0;
                     shape_1prime = std::max (min_exponent, std::min (max_exponent, shape_1prime));
                 }
-                trajectory[i].potential_1prime_shape = shape_1prime;
+                trajectory [i].potential_1prime_shape = shape_1prime;
 
                 double shape_0prime = 0.0;
                 if (std::abs (potential_0prime_value) > derivative_threshold) {
                     shape_0prime = potential_1prime_value * field / potential_0prime_value;
                     const double max_exponent = 10.0;
                     const double min_exponent = -10.0;
-                    shape_0prime = std::max (min_exponent, std::min (max_exponent, shape_0prime));
+                    shape_0prime = std::max (
+                        min_exponent, std::min (max_exponent, shape_0prime));
                 } else {
                     shape_0prime = shape_1prime + 1.0;
                 }
-                trajectory[i].potential_0prime_shape = shape_0prime;
+                trajectory [i].potential_0prime_shape = shape_0prime;
 
-                trajectory[i].potential_2prime_shape = shape_1prime - 1.0;
+                trajectory [i].potential_2prime_shape = shape_1prime - 1.0;
             }
             return trajectory;
         }
